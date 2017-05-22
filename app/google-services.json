@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "654604929984",
+    "firebase_url": "https://usefuel-2427f.firebaseio.com",
+    "project_id": "usefuel-2427f",
+    "storage_bucket": "usefuel-2427f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654604929984:android:277d9e94cfe3e975",
+        "android_client_info": {
+          "package_name": "fr.esiea.ferre.usefuel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654604929984-oc4t91rsrd9k2v194r5p2990ke37vbq4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.esiea.ferre.usefuel",
+            "certificate_hash": "8abb2b1cb06d16cd5af05f1eb6c15052b4aa2114"
+          }
+        },
+        {
+          "client_id": "654604929984-ffc4mrro651kpsugm6mfk8d416hkpq0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwIboxKRLUDFEYkYrR-Qx2mAWBCc5ii34"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654604929984-ffc4mrro651kpsugm6mfk8d416hkpq0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
