@@ -4,58 +4,78 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="30dp"
     tools:context="fr.esiea.ferre.usefuel.LoginActivity">
 
+    <TextView
+        android:id="@+id/toolbar_title"
+        fontPath="fonts/Pacifico.ttf"
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="50sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
         <EditText
-            android:layout_margin="15dp"
-            android:inputType="textEmailAddress"
-            android:hint="Enter your email"
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:theme="@style/EditTextThemeLogin"
+            android:textColor="@color/colorLight"
+            android:textColorHint="@color/colorLight"
+            android:hint="@string/login_email"
+            android:inputType="textEmailAddress" />
 
         <EditText
-            android:layout_margin="15dp"
-            android:inputType="textPassword"
-            android:hint="Enter your password"
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textColor="@color/colorLight"
+            android:textColorHint="@color/colorLight"
+            android:theme="@style/EditTextThemeLogin"
+            android:hint="@string/login_pwd"
+            android:inputType="textPassword" />
 
         <Button
-            android:layout_margin="15dp"
             android:id="@+id/buttonSingIn"
-            android:text="Sign up"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textSize="20sp"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:text="@string/login_login" />
 
         <TextView
-            android:textAlignment="center"
-            android:text="Not have an account? Click here"
             android:id="@+id/textViewSignIn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textColor="@color/colorLight"
+            android:text="@string/login_register"
+            android:textAlignment="center" />
     </LinearLayout>
-
-    <TextView
-        android:text="User Log in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:id="@+id/textView" />
 
 </RelativeLayout>

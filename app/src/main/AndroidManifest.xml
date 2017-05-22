@@ -31,7 +31,11 @@
 
         <activity android:name=".RegisterActivity" />
 
-
+        <!--Maps Android Key
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAwIboxKRLUDFEYkYrR-Qx2mAWBCc5ii34"/>
+        Maps Android Key-->
     </application>
 
 </manifest>
