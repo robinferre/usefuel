@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -69,30 +70,30 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         textViewSignup.setOnClickListener(this);
     }
 
-    private void registerUser(){
+    private void registerUser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String password2 = editTextPassword2.getText().toString().trim();
 
-        if (TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
             //If email is empty
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             //If password is empty
             Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (TextUtils.isEmpty(password2)){
+        if (TextUtils.isEmpty(password2)) {
             //If password2 is empty
             Toast.makeText(this, "Please confirm password", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if ( !(password.equals(password2))){
+        if (!(password.equals(password2))) {
             //If mistake in password
             Toast.makeText(this, "Passwords are not the same", Toast.LENGTH_SHORT).show();
             return;
@@ -104,25 +105,73 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressDialog.setMessage("Registering user...");
         progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
+
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             //User is successfuly registered
                             //Will open the profil activity
                             Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
 
+                            // Deconnexion  to login again
+                            firebaseAuth.signOut();
+
+                            // Email verification
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            sendVerificationEmail();
+
+                            // go on login page
                             finish();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        }else {
-                            Toast.makeText(RegisterActivity.this,"Could not register, please try again",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Could not register, please try again", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
 
+
     }
+
+    private void sendVerificationEmail()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // email sent
+
+                            Toast.makeText(RegisterActivity.this, "Email sent, Verify your address before sign in", Toast.LENGTH_LONG).show();
+
+                            // after email is sent just logout the user and finish this activity
+                            FirebaseAuth.getInstance().signOut();
+                            finish();
+                        }
+                        else
+                        {
+                            // email not sent, so display message and restart the activity or do whatever you wish to do
+                            Toast.makeText(RegisterActivity.this, "Wrong email address, enter a correct one", Toast.LENGTH_LONG).show();
+
+                            //restart this activity
+                            FirebaseAuth.getInstance().getCurrentUser().delete();
+                            overridePendingTransition(0, 0);
+                            finish();
+                            overridePendingTransition(0, 0);
+                            startActivity(getIntent());
+
+                        }
+                    }
+                });
+    }
+
+
+
+
 
     // Calligraphy dependencies required that
     @Override
