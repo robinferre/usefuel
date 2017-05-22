@@ -119,8 +119,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             firebaseAuth.signOut();
 
                             // Email verification
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            sendVerificationEmail();
+                            /*FirebaseUser user = firebaseAuth.getCurrentUser();
+                            sendVerificationEmail();*/
 
                             // go on login page
                             finish();
@@ -135,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    private void sendVerificationEmail()
+    /*private void sendVerificationEmail()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -167,7 +167,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         }
                     }
                 });
-    }
+    }*/
 
 
 
