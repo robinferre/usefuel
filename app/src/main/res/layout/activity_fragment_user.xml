@@ -58,7 +58,7 @@
         app:srcCompat="@drawable/ic_menu_user" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/textViewUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

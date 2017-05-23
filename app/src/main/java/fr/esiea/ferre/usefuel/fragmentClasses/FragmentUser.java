@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import fr.esiea.ferre.usefuel.LoginActivity;
@@ -22,6 +23,7 @@ public class FragmentUser extends Fragment implements OnClickListener{
     public FragmentUser(){}
     private FirebaseAuth firebaseAuth;
     private Button buttonLogout;
+    private TextView usernameTV;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -33,6 +35,18 @@ public class FragmentUser extends Fragment implements OnClickListener{
 
         buttonLogout =(Button) view.findViewById(R.id.button_logout);
         buttonLogout.setOnClickListener(this);
+
+        //show username
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user != null)
+        {
+            String username = user.getEmail().toString();
+            usernameTV = (TextView) view.findViewById(R.id.textViewUsername);
+            usernameTV.setText(username);
+        }
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser()== null){
