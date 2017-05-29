@@ -15,21 +15,21 @@
       },
       "oauth_client": [
         {
-          "client_id": "654604929984-oc4t91rsrd9k2v194r5p2990ke37vbq4.apps.googleusercontent.com",
+          "client_id": "654604929984-8qnmddet6go2inh70no7cbcc7df339ce.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "654604929984-1rqc1j28ljl9firoi0gi2hpqfhl2trbl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "fr.esiea.ferre.usefuel",
             "certificate_hash": "8abb2b1cb06d16cd5af05f1eb6c15052b4aa2114"
           }
-        },
-        {
-          "client_id": "654604929984-ffc4mrro651kpsugm6mfk8d416hkpq0q.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwIboxKRLUDFEYkYrR-Qx2mAWBCc5ii34"
+          "current_key": "AIzaSyBboRUKO-PuPN7-Mh6F6JpoCGHKKd2Y4bo"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "654604929984-ffc4mrro651kpsugm6mfk8d416hkpq0q.apps.googleusercontent.com",
+              "client_id": "654604929984-8qnmddet6go2inh70no7cbcc7df339ce.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
