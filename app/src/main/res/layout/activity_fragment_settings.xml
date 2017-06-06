@@ -46,6 +46,8 @@
         android:layout_weight="0.05"
         app:srcCompat="@color/colorPrimaryLight"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"/>
+
 
 </android.widget.LinearLayout>

@@ -33,7 +33,21 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="30dp"
         android:id="@+id/linearLayout2">
+
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:theme="@style/EditTextThemeLogin"
+            android:textColor="@color/colorLight"
+            android:textColorHint="@color/colorLight"
+            android:hint="@string/register_username"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editTextEmail"

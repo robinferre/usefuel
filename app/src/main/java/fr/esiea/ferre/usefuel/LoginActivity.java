@@ -20,6 +20,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -30,10 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextEmail;
     private  EditText editTextPassword;
     private TextView textViewSignIn;
-
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-
 
 
     @Override
@@ -49,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         );
 
         firebaseAuth = FirebaseAuth.getInstance();
+
 
         // If already connected
         if (firebaseAuth.getCurrentUser() != null){
@@ -72,6 +74,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void userLogin(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+
+
 
         if (TextUtils.isEmpty(email)){
             //If email is empty
@@ -97,9 +101,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         progressDialog.dismiss();
 
                         if (task.isSuccessful()){
+
                             //Start profile Activity
                             finish();
-
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
                     }
@@ -112,6 +116,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+
+
 
     @Override
     public void onClick(View view) {

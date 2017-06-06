@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
@@ -28,14 +29,17 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button buttonRegister;
+    private  EditText editTextUsername;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextPassword2;
     private TextView textViewSignup;
 
     private ProgressDialog progressDialog;
-
+    private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
+        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextPassword2 = (EditText) findViewById(R.id.editTextPassword2);
@@ -76,9 +81,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void registerUser() {
+        final String username = editTextUsername.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String password2 = editTextPassword2.getText().toString().trim();
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
+        if (TextUtils.isEmpty(username)) {
+            //If username is empty
+            Toast.makeText(this, "Please enter username", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (TextUtils.isEmpty(email)) {
             //If email is empty
@@ -120,12 +137,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             //Will open the profil activity
                             Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
 
+                            // Save to database user informations
+                            firebaseUser = firebaseAuth.getCurrentUser();
+                            String uID = firebaseUser.getUid();
+                            User user = new User(username, firebaseUser.getEmail());
+
+                            // Create or Update Database Node
+                            mDatabase.child("users").child(uID).setValue(user);
+
                             // Deconnexion  to login again
                             firebaseAuth.signOut();
-
-                            // Email verification
-                            /*FirebaseUser user = firebaseAuth.getCurrentUser();
-                            sendVerificationEmail();*/
 
                             // go on login page
                             finish();
@@ -139,44 +160,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
-
-    /*private void sendVerificationEmail()
-    {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        user.sendEmailVerification()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            // email sent
-
-                            Toast.makeText(RegisterActivity.this, "Email sent, Verify your address before sign in", Toast.LENGTH_LONG).show();
-
-                            // after email is sent just logout the user and finish this activity
-                            FirebaseAuth.getInstance().signOut();
-                            finish();
-                        }
-                        else
-                        {
-                            // email not sent, so display message and restart the activity or do whatever you wish to do
-                            Toast.makeText(RegisterActivity.this, "Wrong email address, enter a correct one", Toast.LENGTH_LONG).show();
-
-                            //restart this activity
-                            FirebaseAuth.getInstance().getCurrentUser().delete();
-                            overridePendingTransition(0, 0);
-                            finish();
-                            overridePendingTransition(0, 0);
-                            startActivity(getIntent());
-
-                        }
-                    }
-                });
-    }*/
-
-
-
-
 
     // Calligraphy dependencies required that
     @Override

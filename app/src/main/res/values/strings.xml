@@ -17,10 +17,65 @@
     <string name="login_login">SIGN IN</string>
     <string name="login_register">You don\'t have an account? Click here !</string>
 
+    <string name="register_username">Enter your username</string>
     <string name="register_email">Enter your email</string>
     <string name="register_pwd">Enter your password</string>
     <string name="register_pwd2">Enter it again</string>
     <string name="register_register">CREATE ACCOUNT</string>
     <string name="register_login">Already registered? Sign in here!</string>
+
+    <string name="validate">Validate</string>
+    <string name="brand">Add brand</string>
+    <string name="color">Add color</string>
+    <string name="plate">Add last 3 digits of your plate</string>
+    <string name="fuel">Add type of fuel</string>
+
+    <string-array name="car_brand">
+        <item>Other</item>
+        <item>Toyota</item>
+        <item>Volkswagen</item>
+        <item>BMW</item>
+        <item>Seat</item>
+        <item>Renault</item>
+        <item>Peugeot</item>
+        <item>Audi</item>
+        <item>Citroën</item>
+        <item>Fiat</item>
+        <item>Ford</item>
+        <item>Honda</item>
+        <item>Hyundai</item>
+        <item>Lexus</item>
+        <item>Nissan</item>
+        <item>Volvo</item>
+    </string-array>
+
+    <string-array name="car_color">
+        <item>Other</item>
+        <item>Black</item>
+        <item>Black</item>
+        <item>White</item>
+        <item>Silver</item>
+        <item>Grey</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Brown</item>
+        <item>Gold</item>
+        <item>Yellow</item>
+        <item>Orange</item>
+        <item>Purple</item>
+        <item>Pink</item>
+        <item>Green</item>
+    </string-array>
+
+    <string-array name="car_fuel">
+        <item>SP95</item>
+        <item>E85</item>
+        <item>Diesel</item>
+        <item>Ethanol</item>
+    </string-array>
+
+
+
+
 
 </resources>

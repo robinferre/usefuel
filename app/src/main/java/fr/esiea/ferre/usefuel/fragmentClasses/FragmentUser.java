@@ -3,6 +3,7 @@ package fr.esiea.ferre.usefuel.fragmentClasses;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,21 @@ import android.view.View.OnClickListener;
 
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import fr.esiea.ferre.usefuel.LoginActivity;
 import fr.esiea.ferre.usefuel.MainActivity;
 import fr.esiea.ferre.usefuel.R;
+import fr.esiea.ferre.usefuel.User;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FragmentUser extends Fragment implements OnClickListener{
 
@@ -24,12 +33,13 @@ public class FragmentUser extends Fragment implements OnClickListener{
     private FirebaseAuth firebaseAuth;
     private Button buttonLogout;
     private TextView usernameTV;
+    private DatabaseReference mDatabase;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-      // Inflate the layout for this fragment
+        // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.activity_fragment_user, container, false);
 
 
@@ -39,14 +49,28 @@ public class FragmentUser extends Fragment implements OnClickListener{
         //show username
 
         firebaseAuth = FirebaseAuth.getInstance();
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user != null)
+        final FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+        if(FireUser != null)
         {
-            String username = user.getEmail().toString();
+            String uid = FireUser.getUid().toString();
             usernameTV = (TextView) view.findViewById(R.id.textViewUsername);
-            usernameTV.setText(username);
-        }
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            firebaseAuth = FirebaseAuth.getInstance();
+            mDatabase.child("users").child(uid).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
+                    User user = dataSnapshot.getValue(User.class);
+                    usernameTV.setText(user.getUsername());
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Failed to read value
+                    usernameTV.setText("username");
+                }
+            });
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser()== null){
@@ -77,4 +101,3 @@ public class FragmentUser extends Fragment implements OnClickListener{
     }
 
 }
-

@@ -47,31 +47,43 @@
         android:layout_weight="0.05"
         app:srcCompat="@color/colorPrimaryLight"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"/>
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:tint="@color/colorPrimaryLight"
-        app:srcCompat="@drawable/ic_menu_user" />
+        android:layout_height="0dp"
+        android:layout_weight="11"
+        android:orientation="vertical"
+        android:weightSum="10">
 
-    <TextView
-        android:id="@+id/textViewUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_weight="2"
-        android:textSize="30sp"
-        android:text="username"
-        fontPath="fonts/Quicksand_Book.otf" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:tint="@color/colorPrimaryLight"
+            app:srcCompat="@drawable/ic_menu_user" />
 
-    <Button
-        android:id="@+id/button_logout"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/textViewUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:textSize="30sp"
+            android:text="username"
+            fontPath="fonts/Quicksand_Book.otf" />
 
-        android:text="Log Out" />
+        <Button
+            android:id="@+id/button_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:gravity="center"
+            android:text="Log Out" />
+    </LinearLayout>
+
 
 </android.widget.LinearLayout>
