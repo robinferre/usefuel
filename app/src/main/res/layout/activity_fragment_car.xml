@@ -56,15 +56,16 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="4">
-
         <TextView
             android:id="@+id/tv_car1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="None" />
-
+            android:gravity="left|bottom"
+            android:text="None"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textSize="30sp"
+            android:textStyle="bold" />
         <Button
             android:id="@+id/button_car1"
             android:layout_width="match_parent"
@@ -72,24 +73,23 @@
             android:layout_weight="3"
             android:gravity="center"
             android:text="Edit" />
-
-
     </LinearLayout>
-
     <LinearLayout
+        android:id="@+id/car10layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="4">
-
+        android:weightSum="4"
+        android:visibility="gone">
         <TextView
-            android:id="@+id/tv_car2"
+            android:id="@+id/tv_car10"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center" />
-
+            android:gravity="left"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textSize="22sp" />
         <Button
             android:id="@+id/button_d_car1"
             android:layout_width="match_parent"
@@ -97,9 +97,199 @@
             android:layout_weight="3"
             android:gravity="center"
             android:text="Delete" />
-
-
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/blueLine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        app:srcCompat="@color/colorPrimaryLight"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/car2layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_car2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|bottom"
+            android:text="None"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/button_car2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Edit" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/car20layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_car20"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textSize="22sp" />
+        <Button
+            android:id="@+id/button_d_car2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Delete" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/blueLine2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        app:srcCompat="@color/colorPrimaryLight"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:visibility="gone"/>
+
+
+    <LinearLayout
+        android:id="@+id/car3layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_car3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|bottom"
+            android:text="None"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/button_car3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Edit" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/car30layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_car30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textSize="22sp" />
+        <Button
+            android:id="@+id/button_d_car3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Delete" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/blueLine3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        app:srcCompat="@color/colorPrimaryLight"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/car4layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_car4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|bottom"
+            android:text="None"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/button_car4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Edit" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/car40layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_car40"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left"
+            fontPath="fonts/Quicksand_Book.otf"
+            android:textSize="22sp" />
+        <Button
+            android:id="@+id/button_d_car4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Delete" />
+    </LinearLayout>
+
 
 
 </android.widget.LinearLayout>

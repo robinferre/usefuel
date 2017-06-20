@@ -137,13 +137,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             //Will open the profil activity
                             Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
 
-                            // Save to database user informations
+                            // init to database user informations
                             firebaseUser = firebaseAuth.getCurrentUser();
                             String uID = firebaseUser.getUid();
                             User user = new User(username, firebaseUser.getEmail());
+                            Car car1 = new Car("none", "none", "none", "none");
+                            Car car2 = new Car("none", "none", "none", "none");
+                            Car car3 = new Car("none", "none", "none", "none");
+                            Car car4 = new Car("none", "none", "none", "none");
 
-                            // Create or Update Database Node
                             mDatabase.child("users").child(uID).setValue(user);
+                            mDatabase.child("cars").child(uID).child("car1").setValue(car1);
+                            mDatabase.child("cars").child(uID).child("car2").setValue(car2);
+                            mDatabase.child("cars").child(uID).child("car3").setValue(car3);
+                            mDatabase.child("cars").child(uID).child("car4").setValue(car4);
 
                             // Deconnexion  to login again
                             firebaseAuth.signOut();

@@ -11,14 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import fr.esiea.ferre.usefuel.Car;
@@ -28,13 +32,22 @@ import fr.esiea.ferre.usefuel.User;
 public class FragmentCar extends Fragment {
 
     Button mAddCar1, mAddCar2, mAddCar3, mAddCar4;
+    Button mDelCar1, mDelCar2, mDelCar3, mDelCar4;
     TextView mCarView1, mCarView2, mCarView3, mCarView4;
+    TextView mCarView10, mCarView20, mCarView30, mCarView40;
 
-    Car car;
+    ImageView blueLine1, blueLine2, blueLine3;
+    LinearLayout car10layout, car2layout,car20layout, car3layout,car30layout, car4layout,car40layout;
+
+    Car car1;
+    Car car2;
+    Car car3;
+    Car car4;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -42,24 +55,305 @@ public class FragmentCar extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.activity_fragment_car, container, false);
+        final View view =  inflater.inflate(R.layout.activity_fragment_car, container, false);
 
+        car10layout = (LinearLayout) view.findViewById(R.id.car10layout);
         mAddCar1 = (Button) view.findViewById(R.id.button_car1);
+        mDelCar1 = (Button) view.findViewById(R.id.button_d_car1);
         mCarView1 = (TextView) view.findViewById(R.id.tv_car1);
+        mCarView10 = (TextView) view.findViewById(R.id.tv_car10);
+        blueLine1 = (ImageView) view.findViewById(R.id.blueLine1);
+
+        car2layout = (LinearLayout) view.findViewById(R.id.car2layout);
+        car20layout = (LinearLayout) view.findViewById(R.id.car20layout);
+        mAddCar2 = (Button) view.findViewById(R.id.button_car2);
+        mDelCar2 = (Button) view.findViewById(R.id.button_d_car2);
+        mCarView2 = (TextView) view.findViewById(R.id.tv_car2);
+        mCarView20 = (TextView) view.findViewById(R.id.tv_car20);
+        blueLine2 = (ImageView) view.findViewById(R.id.blueLine2);
+
+        car3layout = (LinearLayout) view.findViewById(R.id.car3layout);
+        car30layout = (LinearLayout) view.findViewById(R.id.car30layout);
+        mAddCar3 = (Button) view.findViewById(R.id.button_car3);
+        mDelCar3 = (Button) view.findViewById(R.id.button_d_car3);
+        mCarView3 = (TextView) view.findViewById(R.id.tv_car3);
+        mCarView30 = (TextView) view.findViewById(R.id.tv_car30);
+        blueLine3 = (ImageView) view.findViewById(R.id.blueLine3);
+
+        car4layout = (LinearLayout) view.findViewById(R.id.car4layout);
+        car40layout = (LinearLayout) view.findViewById(R.id.car40layout);
+        mAddCar4 = (Button) view.findViewById(R.id.button_car4);
+        mDelCar4 = (Button) view.findViewById(R.id.button_d_car4);
+        mCarView4 = (TextView) view.findViewById(R.id.tv_car4);
+        mCarView40 = (TextView) view.findViewById(R.id.tv_car40);
 
         // When press the add Car Button, set up multiple AlertDialog to configure your car
         mAddCar1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                car = chooseCar(mCarView1, "car1");
+                car1 = chooseCar(mCarView1, "car1");
+
+            }
+        });
+        mDelCar1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // Save to database user informations
+                firebaseUser = firebaseAuth.getCurrentUser();
+                String uID = firebaseUser.getUid();
+                // set to none all data
+                car1 = new Car("none", "none", "none", "none");
+                mDatabase.child("cars").child(uID).child("car1").setValue(car1);
+            }
+        });
+
+        mAddCar2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                car1 = chooseCar(mCarView2, "car2");
+
+            }
+        });
+        mDelCar2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // Save to database user informations
+                firebaseUser = firebaseAuth.getCurrentUser();
+                String uID = firebaseUser.getUid();
+                // set to none all data
+                car2 = new Car("none", "none", "none", "none");
+                mDatabase.child("cars").child(uID).child("car2").setValue(car2);
+            }
+        });
+
+        mAddCar3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                car3 = chooseCar(mCarView3, "car3");
+
+            }
+        });
+        mDelCar3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // Save to database user informations
+                firebaseUser = firebaseAuth.getCurrentUser();
+                String uID = firebaseUser.getUid();
+                // set to none all data
+                car3 = new Car("none", "none", "none", "none");
+                mDatabase.child("cars").child(uID).child("car3").setValue(car3);
+            }
+        });
+
+        mAddCar4.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                car4 = chooseCar(mCarView4, "car4");
+
+            }
+        });
+        mDelCar4.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // Save to database user informations
+                firebaseUser = firebaseAuth.getCurrentUser();
+                String uID = firebaseUser.getUid();
+                // set to none all data
+                car4 = new Car("none", "none", "none", "none");
+                mDatabase.child("cars").child(uID).child("car4").setValue(car4);
             }
         });
 
 
+        // print the data and manage the screen using the database
+        printData(view);
 
         return view;
     }
+
+
+    void printData(View view){
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        final FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+        if(FireUser != null)
+        {
+            String uid = FireUser.getUid().toString();
+
+
+            mDatabase.child("cars").child(uid).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                    Car car_db1 = dataSnapshot.child("car1").getValue(Car.class);
+                    Car car_db2 = dataSnapshot.child("car2").getValue(Car.class);
+                    Car car_db3 = dataSnapshot.child("car3").getValue(Car.class);
+                    Car car_db4 = dataSnapshot.child("car4").getValue(Car.class);
+
+                    mCarView1.setText(car_db1.getBrand());
+                    mCarView10.setText(car_db1.getColor()+ ", " + car_db1.getFuelType() + ", " + car_db1.getNumberPlate());
+
+                    mCarView2.setText(car_db2.getBrand());
+                    mCarView20.setText(car_db2.getColor()+ ", " + car_db2.getFuelType() + ", " + car_db2.getNumberPlate());
+
+                    mCarView3.setText(car_db3.getBrand());
+                    mCarView30.setText(car_db3.getColor()+ ", " + car_db3.getFuelType() + ", " + car_db3.getNumberPlate());
+
+                    mCarView4.setText(car_db4.getBrand());
+                    mCarView40.setText(car_db4.getColor()+ ", " + car_db4.getFuelType() + ", " + car_db4.getNumberPlate());
+
+                    if(car_db1.getBrand().equals("none") && car_db2.getBrand().equals("none") && car_db3.getBrand().equals("none") && car_db4.getBrand().equals("none")  )
+                    {
+                        mAddCar1.setText("Add");
+                        mAddCar2.setText("Add");
+                        mAddCar3.setText("Add");
+                        mAddCar4.setText("Add");
+
+                        mDelCar1.setVisibility(View.VISIBLE);
+                        mDelCar2.setVisibility(View.VISIBLE);
+                        mDelCar3.setVisibility(View.VISIBLE);
+
+                        car10layout.setVisibility(View.GONE);
+                        blueLine1.setVisibility(View.GONE);
+                        car2layout.setVisibility(View.GONE);
+
+                        car20layout.setVisibility(View.GONE);
+                        blueLine2.setVisibility(View.GONE);
+                        car3layout.setVisibility(View.GONE);
+
+                        car30layout.setVisibility(View.GONE);
+                        blueLine3.setVisibility(View.GONE);
+                        car4layout.setVisibility(View.GONE);
+
+                        car40layout.setVisibility(View.GONE);
+                    }
+                    else if(car_db2.getBrand().equals("none") && car_db3.getBrand().equals("none") && car_db4.getBrand().equals("none") )
+                    {
+                        mAddCar1.setText("Edit");
+                        mAddCar2.setText("Add");
+                        mAddCar3.setText("Add");
+                        mAddCar4.setText("Add");
+
+                        mDelCar1.setVisibility(View.VISIBLE);
+                        mDelCar2.setVisibility(View.VISIBLE);
+                        mDelCar3.setVisibility(View.VISIBLE);
+
+                        car10layout.setVisibility(View.VISIBLE);
+                        blueLine1.setVisibility(View.VISIBLE);
+                        car2layout.setVisibility(View.VISIBLE);
+
+                        car20layout.setVisibility(View.GONE);
+                        blueLine2.setVisibility(View.GONE);
+                        car3layout.setVisibility(View.GONE);
+
+                        car30layout.setVisibility(View.GONE);
+                        blueLine3.setVisibility(View.GONE);
+                        car4layout.setVisibility(View.GONE);
+
+                        car40layout.setVisibility(View.GONE);
+                    }
+                    else if( car_db3.getBrand().equals("none") && car_db4.getBrand().equals("none") )
+                    {
+                        mAddCar1.setText("Edit");
+                        mAddCar2.setText("Edit");
+                        mAddCar3.setText("Add");
+                        mAddCar4.setText("Add");
+
+                        mDelCar1.setVisibility(View.GONE);
+                        mDelCar2.setVisibility(View.VISIBLE);
+                        mDelCar3.setVisibility(View.VISIBLE);
+
+                        car10layout.setVisibility(View.VISIBLE);
+                        blueLine1.setVisibility(View.VISIBLE);
+                        car2layout.setVisibility(View.VISIBLE);
+
+                        car20layout.setVisibility(View.VISIBLE);
+                        blueLine2.setVisibility(View.VISIBLE);
+                        car3layout.setVisibility(View.VISIBLE);
+
+                        car30layout.setVisibility(View.GONE);
+                        blueLine3.setVisibility(View.GONE);
+                        car4layout.setVisibility(View.GONE);
+
+                        car40layout.setVisibility(View.GONE);
+                    }
+                    else if( car_db4.getBrand().equals("none"))
+                    {
+                        mAddCar1.setText("Edit");
+                        mAddCar2.setText("Edit");
+                        mAddCar3.setText("Edit");
+                        mAddCar4.setText("Add");
+
+                        mDelCar1.setVisibility(View.GONE);
+                        mDelCar2.setVisibility(View.GONE);
+                        mDelCar3.setVisibility(View.VISIBLE);
+
+                        car10layout.setVisibility(View.VISIBLE);
+                        blueLine1.setVisibility(View.VISIBLE);
+                        car2layout.setVisibility(View.VISIBLE);
+
+                        car20layout.setVisibility(View.VISIBLE);
+                        blueLine2.setVisibility(View.VISIBLE);
+                        car3layout.setVisibility(View.VISIBLE);
+
+                        car30layout.setVisibility(View.VISIBLE);
+                        blueLine3.setVisibility(View.VISIBLE);
+                        car4layout.setVisibility(View.VISIBLE);
+
+                        car40layout.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        mAddCar1.setText("Edit");
+                        mAddCar2.setText("Edit");
+                        mAddCar3.setText("Edit");
+                        mAddCar4.setText("Edit");
+
+                        mDelCar1.setVisibility(View.GONE);
+                        mDelCar2.setVisibility(View.GONE);
+                        mDelCar3.setVisibility(View.GONE);
+
+                        car10layout.setVisibility(View.VISIBLE);
+                        blueLine1.setVisibility(View.VISIBLE);
+                        car2layout.setVisibility(View.VISIBLE);
+
+                        car20layout.setVisibility(View.VISIBLE);
+                        blueLine2.setVisibility(View.VISIBLE);
+                        car3layout.setVisibility(View.VISIBLE);
+
+                        car30layout.setVisibility(View.VISIBLE);
+                        blueLine3.setVisibility(View.VISIBLE);
+                        car4layout.setVisibility(View.VISIBLE);
+
+                        car40layout.setVisibility(View.VISIBLE);
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Failed to read value
+                }
+            });
+        }
+    }
+
 
     Car chooseCar(final TextView mCarView, final String car_number){
 
@@ -168,7 +462,6 @@ public class FragmentCar extends Fragment {
                 mDatabase.child("cars").child(uID).child(car_number).setValue(car);
             }
         });
-
 
         // Create the alert dialog
         myDialog1 = builder1.create();

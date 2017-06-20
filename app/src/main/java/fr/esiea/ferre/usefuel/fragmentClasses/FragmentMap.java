@@ -2,6 +2,7 @@ package fr.esiea.ferre.usefuel.fragmentClasses;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -15,12 +16,19 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import fr.esiea.ferre.usefuel.GPSTracker;
 import fr.esiea.ferre.usefuel.R;
 
 
 public class FragmentMap extends Fragment {
 
     private static View view;
+    private GoogleMap mMap;
+
+    private GPSTracker gpsTracker;
+    private Location mLocation;
+    double latitude, longitude;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +40,8 @@ public class FragmentMap extends Fragment {
         }
         try {
             view =  inflater.inflate(R.layout.activity_fragment_map, container, false);
+            //mMap = ((SupportMapFragment)getActivity().getSupportFragmentManager.findFragmentById(R.id.map)).getMapAsync();
+
         } catch (InflateException e) {
 
         }

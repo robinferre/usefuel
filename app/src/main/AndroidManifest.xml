@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
 
+        <activity
+            android:name=".LoadingScreenActivity">
+        </activity>
 
         <activity
             android:name=".LoginActivity">
