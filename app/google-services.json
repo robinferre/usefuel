@@ -15,8 +15,12 @@
       },
       "oauth_client": [
         {
-          "client_id": "654604929984-8qnmddet6go2inh70no7cbcc7df339ce.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "654604929984-b5aabf5je9d1i8nep820o60g3cfepari.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.esiea.ferre.usefuel",
+            "certificate_hash": "dbc69f38170ab55cdd5e80278430cfc5be614dc4"
+          }
         },
         {
           "client_id": "654604929984-1rqc1j28ljl9firoi0gi2hpqfhl2trbl.apps.googleusercontent.com",
@@ -25,6 +29,10 @@
             "package_name": "fr.esiea.ferre.usefuel",
             "certificate_hash": "8abb2b1cb06d16cd5af05f1eb6c15052b4aa2114"
           }
+        },
+        {
+          "client_id": "654604929984-8qnmddet6go2inh70no7cbcc7df339ce.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
