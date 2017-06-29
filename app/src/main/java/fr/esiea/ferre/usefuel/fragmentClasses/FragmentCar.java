@@ -27,7 +27,6 @@ import java.util.Arrays;
 
 import fr.esiea.ferre.usefuel.Car;
 import fr.esiea.ferre.usefuel.R;
-import fr.esiea.ferre.usefuel.User;
 
 public class FragmentCar extends Fragment {
 
@@ -55,7 +54,7 @@ public class FragmentCar extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        final View view =  inflater.inflate(R.layout.activity_fragment_car, container, false);
+        final View view =  inflater.inflate(R.layout.fragment_car, container, false);
 
         car10layout = (LinearLayout) view.findViewById(R.id.car10layout);
         mAddCar1 = (Button) view.findViewById(R.id.button_car1);

@@ -37,7 +37,7 @@ public class LoadingScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
+                finish();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         }, 3000);

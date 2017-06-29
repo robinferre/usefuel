@@ -3,7 +3,6 @@ package fr.esiea.ferre.usefuel.fragmentClasses;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,9 @@ import android.view.View.OnClickListener;
 
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import fr.esiea.ferre.usefuel.LoginActivity;
-import fr.esiea.ferre.usefuel.MainActivity;
 import fr.esiea.ferre.usefuel.R;
 import fr.esiea.ferre.usefuel.User;
 
@@ -40,7 +37,7 @@ public class FragmentUser extends Fragment implements OnClickListener{
                              ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.activity_fragment_user, container, false);
+        View view =  inflater.inflate(R.layout.fragment_user, container, false);
 
 
         buttonLogout =(Button) view.findViewById(R.id.button_logout);

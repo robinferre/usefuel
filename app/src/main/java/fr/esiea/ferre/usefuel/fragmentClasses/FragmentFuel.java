@@ -15,7 +15,7 @@ public class FragmentFuel extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.activity_fragment_fuel, container, false);
+        View view =  inflater.inflate(R.layout.fragment_fuel, container, false);
         return view;
     }
 }

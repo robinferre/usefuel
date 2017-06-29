@@ -5,6 +5,7 @@ package fr.esiea.ferre.usefuel;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,7 +22,6 @@ import android.view.MenuItem;
 
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentCar;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentFuel;
-import fr.esiea.ferre.usefuel.fragmentClasses.FragmentMap;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentSettings;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentUser;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_user) {
             loadFragment(new FragmentUser());
         } else if (id == R.id.nav_map) {
-            loadFragment(new FragmentMap());
+            startActivity(new Intent(this,MapActivity.class));
         } else if (id == R.id.nav_car) {
             loadFragment(new FragmentCar());
         } else if (id == R.id.nav_fuel) {
