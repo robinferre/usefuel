@@ -1,40 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_map"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    tools:context="fr.esiea.ferre.usefuel.MapActivity">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="100">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="85"
-            android:layout_below="@+id/toolbar2"
-            tools:context="com.example.mapwithmarker.MapsMarkerActivity"
-            />
+        <EditText
+            android:layout_width="287dp"
+            android:layout_height="51dp"
+            android:id="@+id/TFaddress"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="15"
-            android:orientation="horizontal">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="Search"
+            android:layout_width="101dp"
+            android:layout_height="match_parent"
+            android:id="@+id/searchButton"
+            android:layout_gravity="right"
+            android:onClick="onSearch"/>
 
-        </LinearLayout>
+
+
+
     </LinearLayout>
 
+    <fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="384dp"
+        android:layout_height="467dp"
+        tools:context="fr.esiea.ferre.usefuel.MapActivity"/>
 
-</RelativeLayout>
+
+
+
+</LinearLayout>
+
