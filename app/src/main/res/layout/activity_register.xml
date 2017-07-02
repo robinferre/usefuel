@@ -105,4 +105,14 @@
             android:textAlignment="center"/>
     </LinearLayout>
 
+    <TextView
+        android:text="Be a deliver?"
+        fontPath="fonts/Quicksand_Book.otf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:id="@+id/textViewBeDeliver" />
+
 </RelativeLayout>

@@ -1,0 +1,66 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+
+    tools:context="fr.esiea.ferre.usefuel.fragmentClasses.FragmentWBAD_1">
+
+    <TextView
+        android:text="Be your own boss"
+        android:textColor="#000000"
+        fontPath="fonts/Quicksand_Book.otf"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="55dp"
+        android:id="@+id/textViewWBAD1" />
+
+    <ImageView
+        android:id="@+id/boss"
+        android:layout_gravity="center"
+        android:layout_marginBottom="130dp"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:background="@mipmap/ic_boss" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Action1"
+        android:background="@mipmap/ic_back"
+        android:id="@+id/backToReg"/>
+
+
+    <TextView
+        android:text="Do you want to be a delivery man?"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="110dp"
+         />
+
+    <TextView
+        android:text="With Use'Fuel it's very easy and you"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="140dp"
+         />
+
+    <TextView
+        android:text="can start earn money directly"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="170dp"
+         />
+
+
+</FrameLayout>

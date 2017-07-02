@@ -37,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTextPassword;
     private EditText editTextPassword2;
     private TextView textViewSignup;
+    private TextView textViewBeDeliver;
 
     private ProgressDialog progressDialog;
     private DatabaseReference mDatabase;
@@ -79,9 +80,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextPassword2 = (EditText) findViewById(R.id.editTextPassword2);
         textViewSignup = (TextView) findViewById(R.id.textViewSignup);
+        textViewBeDeliver = (TextView) findViewById(R.id.textViewBeDeliver);
 
         buttonRegister.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
+        textViewBeDeliver.setOnClickListener(this);
     }
 
     private void registerUser() {
@@ -221,6 +224,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             //Will open login activity
             finish();
             startActivity(new Intent(this,LoginActivity.class));
+        }
+
+        if (view == textViewBeDeliver){
+            startActivity(new Intent(this,WBADeliverActivity.class));
+
+
         }
     }
 }

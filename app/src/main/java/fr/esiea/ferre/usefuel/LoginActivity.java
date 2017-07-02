@@ -3,15 +3,11 @@ package fr.esiea.ferre.usefuel;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,9 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -75,40 +71,50 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
+        boolean validForm = true;
 
-
-        if (TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
             //If email is empty
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+            validForm = false;
+            return;
+         }
+        else if (!findMatch(email,"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-z0-9.-]+$")) {
+            //If email is empty
+            Toast.makeText(this, "Please enter valid email", Toast.LENGTH_SHORT).show();
+            validForm = false;
             return;
         }
-
-        if (TextUtils.isEmpty(password)){
+        else if (TextUtils.isEmpty(password)) {
             //If password is empty
             Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
+            validForm = false;
             return;
         }
 
         //IF VALIDATIONS ARE OK
+        if(validForm) {
 
-        progressDialog.setMessage("Login...");
-        progressDialog.show();
+            progressDialog.setMessage("Login...");
+            progressDialog.show();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressDialog.dismiss();
 
-                        if (task.isSuccessful()){
+                            if (task.isSuccessful()) {
 
-                            //Start profile Activity
+                                //Start profile Activity
 
-                            startActivity(new Intent(getApplicationContext(),LoadingScreenActivity.class));
+                                startActivity(new Intent(getApplicationContext(), LoadingScreenActivity.class));
+                            }
                         }
-                    }
 
-                });
+                    });
+
+        }
     }
 
     // Calligraphy dependencies required that
@@ -117,7 +123,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    public static Boolean findMatch(String myString, String pattern) {
 
+        String match = "";
+
+        // Pattern to find code
+        Pattern regEx = Pattern.compile(pattern);
+
+        // Find instance of pattern matches
+        Matcher m = regEx.matcher(myString);
+        if (m.find()) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     @Override
     public void onClick(View view) {
