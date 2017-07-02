@@ -382,7 +382,7 @@ public class FragmentCar extends Fragment {
         listBrands = getResources().getStringArray(R.array.car_brand);
         Arrays.sort(listBrands);
 
-        builder1.setSingleChoiceItems(listBrands, -1, new DialogInterface.OnClickListener() {
+        builder1.setSingleChoiceItems(listBrands, 1, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -406,7 +406,7 @@ public class FragmentCar extends Fragment {
         listColors = getResources().getStringArray(R.array.car_color);
         Arrays.sort(listColors);
 
-        builder2.setSingleChoiceItems(listColors, -1, new DialogInterface.OnClickListener() {
+        builder2.setSingleChoiceItems(listColors, 1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 car.setColor(Arrays.asList(listColors).get(i));
@@ -426,7 +426,7 @@ public class FragmentCar extends Fragment {
         builder3.setCancelable(false);
 
         listFuels = getResources().getStringArray(R.array.car_fuel);
-        builder3.setSingleChoiceItems(listFuels, -1, new DialogInterface.OnClickListener() {
+        builder3.setSingleChoiceItems(listFuels, 1, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -440,7 +440,7 @@ public class FragmentCar extends Fragment {
             }
         });
 
-        //third Builder to choose the fuel
+        //final Builder to choose the plate
         AlertDialog.Builder builder4 = new AlertDialog.Builder(getActivity());
         builder4.setTitle("Enter the last 3 digit of your plate");
         builder4.setIcon(R.drawable.ic_menu_car);
@@ -451,14 +451,19 @@ public class FragmentCar extends Fragment {
         builder4.setPositiveButton("Finish", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
                 car.setNumberPlate(digit.getText().toString());
 
-                // Save to database user informations
-                firebaseUser = firebaseAuth.getCurrentUser();
-                String uID = firebaseUser.getUid();
+                if(car.getBrand().isEmpty() || car.getColor().isEmpty() || car.getFuelType().isEmpty() || car.getNumberPlate().isEmpty()){}
+                else
+                {
+                    // Save to database user informations
+                    firebaseUser = firebaseAuth.getCurrentUser();
+                    String uID = firebaseUser.getUid();
 
-                // Create or Update Database Node
-                mDatabase.child("cars").child(uID).child(car_number).setValue(car);
+                    // Create or Update Database Node
+                    mDatabase.child("cars").child(uID).child(car_number).setValue(car);
+                }
             }
         });
 
@@ -472,6 +477,7 @@ public class FragmentCar extends Fragment {
         myDialog3.show();
         myDialog2.show();
         myDialog1.show();
+
 
         return car;
     }

@@ -5,4 +5,11 @@
     <color name="colorAccent">#bfe8f5</color>
     <color name="colorPrimaryLight">#89b8e6</color>
     <color name="colorLight">#ffffff</color>
+    <color name="transparent">#00484848</color>
+
+    <color name="blue">#669ec1</color>
+    <color name="red">#ff3636</color>
+    <color name="green">#66d66a</color>
+
+
 </resources>

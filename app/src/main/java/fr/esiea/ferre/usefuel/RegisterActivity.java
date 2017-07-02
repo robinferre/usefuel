@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         // Allows Firebase database offline mode
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        /*FirebaseDatabase.getInstance().setPersistenceEnabled(true);*/
 
 
         // Set up of the Calligraphy dependencies, that allows us to use a custom font in a .xml layout file
@@ -219,8 +219,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (view == textViewSignup){
             //Will open login activity
-            startActivity(new Intent(this,LoginActivity.class));
             finish();
+            startActivity(new Intent(this,LoginActivity.class));
         }
     }
 }
