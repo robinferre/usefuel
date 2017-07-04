@@ -382,7 +382,7 @@ public class FragmentCar extends Fragment {
         listBrands = getResources().getStringArray(R.array.car_brand);
         Arrays.sort(listBrands);
 
-        builder1.setSingleChoiceItems(listBrands, 1, new DialogInterface.OnClickListener() {
+        builder1.setSingleChoiceItems(listBrands, 0, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -406,7 +406,7 @@ public class FragmentCar extends Fragment {
         listColors = getResources().getStringArray(R.array.car_color);
         Arrays.sort(listColors);
 
-        builder2.setSingleChoiceItems(listColors, 1, new DialogInterface.OnClickListener() {
+        builder2.setSingleChoiceItems(listColors, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 car.setColor(Arrays.asList(listColors).get(i));
@@ -426,7 +426,7 @@ public class FragmentCar extends Fragment {
         builder3.setCancelable(false);
 
         listFuels = getResources().getStringArray(R.array.car_fuel);
-        builder3.setSingleChoiceItems(listFuels, 1, new DialogInterface.OnClickListener() {
+        builder3.setSingleChoiceItems(listFuels, 0, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

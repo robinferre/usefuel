@@ -117,8 +117,6 @@ public class MainActivity extends AppCompatActivity
         // Call differents Fragment Java Class depending of the navigation Item Selected
         if (id == R.id.nav_user) {
             loadFragment(new FragmentUser());
-        } else if (id == R.id.nav_map) {
-            startActivity(new Intent(this,MapActivity.class));
         } else if (id == R.id.nav_car) {
             loadFragment(new FragmentCar());
         } else if (id == R.id.nav_fuel) {

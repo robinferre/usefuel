@@ -40,8 +40,18 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="80"
+        android:layout_weight="79.5"
         tools:context="fr.esiea.ferre.usefuel.MapActivity" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:srcCompat="@color/colorPrimaryLight" />
 
     <LinearLayout
         android:id="@+id/layout_rcd"

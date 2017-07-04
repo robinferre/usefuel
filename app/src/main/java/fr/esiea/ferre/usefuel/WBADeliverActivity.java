@@ -1,10 +1,12 @@
 package fr.esiea.ferre.usefuel;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class WBADeliverActivity extends FragmentActivity {
 
@@ -27,7 +29,11 @@ public class WBADeliverActivity extends FragmentActivity {
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
+    }
 
-
+    // Calligraphy dependencies required that
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

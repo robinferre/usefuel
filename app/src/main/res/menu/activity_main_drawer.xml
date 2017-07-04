@@ -6,11 +6,6 @@
             android:id="@+id/nav_user"
             android:icon="@drawable/ic_menu_user"
             android:title="@string/menu_user" />
-
-        <item
-            android:id="@+id/nav_map"
-            android:icon="@drawable/ic_menu_map"
-            android:title="@string/menu_map" />
         <item
             android:id="@+id/nav_car"
             android:icon="@drawable/ic_menu_car"

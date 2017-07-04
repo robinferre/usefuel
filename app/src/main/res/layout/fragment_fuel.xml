@@ -44,10 +44,141 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.05"
-            app:srcCompat="@color/colorPrimaryLight"
+            android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="5dp"/>
+            app:srcCompat="@color/colorPrimaryLight" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10.95"
+            android:orientation="vertical"
+            android:weightSum="100">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/text_car_static"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="35"
+                            android:ems="10"
+                            android:gravity="left|center_vertical"
+                            android:text="@string/fuel_choose_car"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/text_car"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="45"
+                            android:ems="10"
+                            android:gravity="left|center_vertical"
+                            android:textSize="20sp" />
+
+
+                        <Button
+                            android:id="@+id/button_edit_car"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:gravity="center"
+                            android:text="Edit" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/text_quantity_static"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="35"
+                            android:ems="10"
+                            android:gravity="left|center_vertical"
+                            android:text="@string/fuel_choose_quantity"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/text_quantity"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="45"
+                            android:ems="10"
+                            android:gravity="left|center_vertical"
+                            android:textSize="20sp" />
+
+
+                        <Button
+                            android:id="@+id/button_edit_quantity"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:gravity="center"
+                            android:text="Edit" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/textpricestatic"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="35"
+                            android:ems="10"
+                            android:gravity="left|center_vertical"
+                            android:text="@string/fuel_estimated_price"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/text_price"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="65"
+                            android:ems="10"
+                            android:gravity="left|center_vertical"
+                            android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="20"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+
+                    android:text="@string/button_book_address" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="20"
+                    android:orientation="vertical"
+                    android:weightSum="100">
+
+                </LinearLayout>
+
+        </LinearLayout>
 
 
 </android.widget.LinearLayout>

@@ -30,6 +30,14 @@
     <string name="plate">Add last 3 digits of your plate</string>
     <string name="fuel">Add type of fuel</string>
 
+
+    <string name="fuel_choose_car">Choose car :</string>
+    <string name="fuel_choose_quantity">Desired quantity :</string>
+    <string name="fuel_estimated_price">Estimated price :</string>
+
+    <string name="button_book_address">Find your address</string>
+
+
     <string-array name="car_brand">
         <item>Other</item>
         <item>Toyota</item>

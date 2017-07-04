@@ -25,13 +25,13 @@
         android:layout_marginBottom="130dp"
         android:layout_width="210dp"
         android:layout_height="210dp"
-        android:background="@mipmap/ic_boss" />
+        android:background="@drawable/ic_boss" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:onClick="Action1"
-        android:background="@mipmap/ic_back"
+        android:background="@drawable/ic_back"
         android:id="@+id/backToReg"/>
 
 
