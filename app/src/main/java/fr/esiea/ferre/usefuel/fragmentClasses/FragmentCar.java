@@ -368,7 +368,7 @@ public class FragmentCar extends Fragment {
         final String[] listColors;
         final String[] listFuels;
 
-        AlertDialog myDialog1, myDialog2, myDialog3, myDialog4;
+        final AlertDialog myDialog1, myDialog2, myDialog3, myDialog4;
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -382,18 +382,19 @@ public class FragmentCar extends Fragment {
         listBrands = getResources().getStringArray(R.array.car_brand);
         Arrays.sort(listBrands);
 
-        builder1.setSingleChoiceItems(listBrands, 0, new DialogInterface.OnClickListener() {
+        builder1.setSingleChoiceItems(listBrands, -1, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 car.setBrand(Arrays.asList(listBrands).get(i));
+
             }
         });
         //Button to decide what to do next
         builder1.setPositiveButton("Next", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                //nothing here, overrided later
             }
         });
 
@@ -406,7 +407,7 @@ public class FragmentCar extends Fragment {
         listColors = getResources().getStringArray(R.array.car_color);
         Arrays.sort(listColors);
 
-        builder2.setSingleChoiceItems(listColors, 0, new DialogInterface.OnClickListener() {
+        builder2.setSingleChoiceItems(listColors, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 car.setColor(Arrays.asList(listColors).get(i));
@@ -426,7 +427,7 @@ public class FragmentCar extends Fragment {
         builder3.setCancelable(false);
 
         listFuels = getResources().getStringArray(R.array.car_fuel);
-        builder3.setSingleChoiceItems(listFuels, 0, new DialogInterface.OnClickListener() {
+        builder3.setSingleChoiceItems(listFuels, -1, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -451,19 +452,6 @@ public class FragmentCar extends Fragment {
         builder4.setPositiveButton("Finish", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-                car.setNumberPlate(digit.getText().toString());
-
-                if(car.getBrand().isEmpty() || car.getColor().isEmpty() || car.getFuelType().isEmpty() || car.getNumberPlate().isEmpty()){}
-                else
-                {
-                    // Save to database user informations
-                    firebaseUser = firebaseAuth.getCurrentUser();
-                    String uID = firebaseUser.getUid();
-
-                    // Create or Update Database Node
-                    mDatabase.child("cars").child(uID).child(car_number).setValue(car);
-                }
             }
         });
 
@@ -472,12 +460,64 @@ public class FragmentCar extends Fragment {
         myDialog2 = builder2.create();
         myDialog3 = builder3.create();
         myDialog4 = builder4.create();
+
         // Finally, display the alert dialog
         myDialog4.show();
         myDialog3.show();
         myDialog2.show();
         myDialog1.show();
 
+        myDialog1.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(car.getBrand() != null)
+                    myDialog1.dismiss();
+            }
+        });
+
+        myDialog2.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(car.getColor() != null)
+                    myDialog2.dismiss();
+            }
+        });
+
+        myDialog3.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(car.getFuelType() != null)
+                    myDialog3.dismiss();
+            }
+        });
+
+        myDialog4.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                car.setNumberPlate(digit.getText().toString());
+
+                if(!car.getNumberPlate().isEmpty())
+                {
+                    // Save to database user informations
+                    firebaseUser = firebaseAuth.getCurrentUser();
+                    String uID = firebaseUser.getUid();
+
+                    // Create or Update Database Node
+                    mDatabase.child("cars").child(uID).child(car_number).setValue(car);
+
+                    myDialog4.dismiss();
+                }
+
+            }
+        });
 
         return car;
     }
