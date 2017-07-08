@@ -158,14 +158,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 Car car3 = new Car("none", "none", "none", "none");
                                 Car car4 = new Car("none", "none", "none", "none");
 
-                                // OrderFuel orderFuel1 = new OrderFuel("none");
-
                                 mDatabase.child("users").child(uID).setValue(user);
                                 mDatabase.child("cars").child(uID).child("car1").setValue(car1);
                                 mDatabase.child("cars").child(uID).child("car2").setValue(car2);
                                 mDatabase.child("cars").child(uID).child("car3").setValue(car3);
                                 mDatabase.child("cars").child(uID).child("car4").setValue(car4);
-                                // mDatabase.child("order").child(uID).child("orderFuel1").setValue(orderFuel1);
+
+                                OrderFuel order = new OrderFuel("none", car1, null, "none", "none", "none");
+
+                                mDatabase.child("order").child(uID).setValue(order);
+
+
                                 // go on login page
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                 finish();
