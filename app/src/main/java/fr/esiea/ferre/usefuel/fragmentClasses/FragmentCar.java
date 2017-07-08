@@ -25,6 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import fr.esiea.ferre.usefuel.Car;
 import fr.esiea.ferre.usefuel.R;
 
@@ -504,7 +507,8 @@ public class FragmentCar extends Fragment {
             {
                 car.setNumberPlate(digit.getText().toString());
 
-                if(!car.getNumberPlate().isEmpty())
+                //Regex here to test if its exactly 3 digits
+                if(findMatch(car.getNumberPlate(),"[a-zA-Z0-9]{3}"))
                 {
                     // Save to database user informations
                     firebaseUser = firebaseAuth.getCurrentUser();
@@ -522,5 +526,21 @@ public class FragmentCar extends Fragment {
         return car;
     }
 
+    public static Boolean findMatch(String myString, String pattern) {
 
+        String match = "";
+
+        // Pattern to find code
+        Pattern regEx = Pattern.compile(pattern);
+
+        // Find instance of pattern matches
+        Matcher m = regEx.matcher(myString);
+        if (m.find()) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
