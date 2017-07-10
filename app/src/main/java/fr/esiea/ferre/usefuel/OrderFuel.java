@@ -30,5 +30,35 @@ public class OrderFuel {
     public void setFuelQuantity(String fuel) {
         this.fuelQuantity = fuel;
     }
+    public Car getCar() {
+        return car;
+    }
+    public void setCar(Car car) {
+        this.car = car;
+    }
+    public Address getAddress() {
+        return address;
+    }
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    public String getPrice() {
+        return price;
+    }
+    public void setPrice(String price) {
+        this.price = price;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public String getDeliverer() {
+        return deliverer;
+    }
+    public void setDeliverer(String deliverer) {
+        this.deliverer = deliverer;
+    }
 
 }
