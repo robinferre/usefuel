@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentWBAD_1;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentWBAD_2;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentWBAD_3;
+import fr.esiea.ferre.usefuel.fragmentClasses.FragmentWBAD_4;
 
 /**
  * Created by Raphaël on 02/07/2017.
@@ -29,6 +30,9 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return new FragmentWBAD_3();
 
+            case 3:
+                return new FragmentWBAD_4();
+
             default:
                 break;
 
@@ -38,6 +42,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }
