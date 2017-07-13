@@ -13,23 +13,23 @@
         android:id="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
         android:layout_weight="10"
-        android:weightSum="100"
-        android:visibility="gone">
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="100">
 
         <EditText
             android:id="@+id/TFaddress"
-            android:layout_weight="70"
             android:layout_width="0dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="70" />
 
         <Button
             android:id="@+id/searchButton"
             style="?android:attr/buttonStyleSmall"
-            android:layout_weight="30"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="30"
             android:onClick="onSearch"
             android:text="Search" />
 
@@ -57,10 +57,10 @@
         android:id="@+id/layout_rcd"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
         android:layout_weight="10"
-        android:weightSum="12"
-        android:visibility="visible">
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:weightSum="12">
 
         <ImageView
             android:layout_width="0dp"
@@ -75,8 +75,8 @@
             android:layout_weight="2"
             android:gravity="center_horizontal|center_vertical"
 
-            android:text="Return"
-            android:onClick="onReturn"/>
+            android:onClick="onReturn"
+            android:text="Return" />
 
 
         <ImageView
@@ -92,8 +92,8 @@
             android:layout_weight="2"
             android:gravity="center_horizontal|center_vertical"
 
-            android:text="Cancel"
-            android:onClick="onCancel"/>
+            android:onClick="onCancel"
+            android:text="Cancel" />
 
         <ImageView
             android:layout_width="0dp"
@@ -106,8 +106,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Done"
-            android:onClick="onDone"/>
+            android:onClick="onDone"
+            android:text="Done" />
 
         <ImageView
             android:layout_width="0dp"
@@ -123,8 +123,8 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:orientation="horizontal"
-        android:weightSum="6"
-        android:visibility="gone">
+        android:visibility="visible"
+        android:weightSum="11">
 
         <ImageView
             android:layout_width="0dp"
@@ -137,8 +137,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:text="Book"
-            android:onClick="onBook"/>
+            android:onClick="onBook"
+            android:text="Book" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@color/transparent" />
+
+        <Button
+            android:id="@+id/button_return_book"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:onClick="onBook"
+            android:text="Book" />
 
         <ImageView
             android:layout_width="0dp"

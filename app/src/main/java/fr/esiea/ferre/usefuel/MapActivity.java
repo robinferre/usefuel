@@ -17,10 +17,18 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -29,13 +37,18 @@ import java.util.List;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+
     private GoogleMap mMap;
+    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -46,9 +59,13 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         }
-
+        updatePrintData();
     }
     public void onSearch(View view){
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
         EditText location_tf = (EditText)findViewById(R.id.TFaddress);
         String location = location_tf.getText().toString();
         List<Address> addressList=null;
@@ -62,11 +79,44 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             }
 
             Address address = addressList.get(0);
+
+            firebaseUser = firebaseAuth.getCurrentUser();
+            String uID = firebaseUser.getUid();
+            mDatabase.child("orders").child(uID).child("address").setValue(address);
+
             LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
             mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng ));
+
         }
 
+    }
+
+    void updatePrintData(){
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+        if(FireUser != null)
+        {
+            final String uid = FireUser.getUid().toString();
+            mDatabase.child("orders").child(uid).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    Address address =  dataSnapshot.child("address").getValue(Address.class);
+
+                    //get searched address and place a marker
+                    if(address != null){
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Failed to read value
+                }
+            });
+        }
     }
 
 
