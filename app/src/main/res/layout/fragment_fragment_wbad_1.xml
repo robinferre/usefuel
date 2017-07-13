@@ -9,7 +9,7 @@
     tools:context="fr.esiea.ferre.usefuel.fragmentClasses.FragmentWBAD_1">
 
     <TextView
-        android:text="Be your own boss"
+        android:text="@string/wbad1_title"
         android:textColor="#000000"
         fontPath="fonts/Quicksand_Book.otf"
         android:textSize="30dp"
@@ -36,31 +36,16 @@
 
 
     <TextView
-        android:text="Do you want to be a delivery man?"
+        android:text="@string/wbad1_content"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:paddingTop="60dp"
+        android:textAlignment="center"
         android:layout_marginTop="110dp"
          />
 
-    <TextView
-        android:text="With Use'Fuel it's very easy and you"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="140dp"
-         />
-
-    <TextView
-        android:text="can start earn money directly"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="170dp"
-         />
 
 
 </FrameLayout>

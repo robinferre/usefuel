@@ -37,6 +37,15 @@
 
     <string name="button_book_address">Find your address</string>
 
+    <string name="wbad1_title">Be your own boss</string>
+    <string name="wbad1_content">Do you want to be a delivery man?\nWith Use\'Fuel it\'s very easy and you\ncan start earn money directly</string>
+    <string name="wbad2_title">Work whenever you want</string>
+    <string name="wbad2_content">Want to manage your schedule?\nWith Use\'Fuel now you can!\nYou are free</string>
+    <string name="wbad3_title">Use\'Fuel Team help you</string>
+    <string name="wbad3_content">We follow you if you have any problems.\n We can give you advices\nto optimize your time of work</string>
+    <string name="wbad4_title">apply@usefuel.com</string>
+    <string name="wbad4_content">Send us an email to\napply as a delivery person.\nJoin the Use\'fuel team</string>
+
 
     <string-array name="car_brand">
         <item>Other</item>
