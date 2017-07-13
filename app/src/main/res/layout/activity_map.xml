@@ -22,6 +22,7 @@
             android:id="@+id/TFaddress"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:inputType="text"
             android:layout_weight="70" />
 
         <Button
@@ -31,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_weight="30"
             android:onClick="onSearch"
-            android:text="Search" />
+            android:text="@string/search" />
 
     </LinearLayout>
 
@@ -42,16 +43,6 @@
         android:layout_height="0dp"
         android:layout_weight="79.5"
         tools:context="fr.esiea.ferre.usefuel.MapActivity" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:srcCompat="@color/colorPrimaryLight" />
 
     <LinearLayout
         android:id="@+id/layout_rcd"
@@ -76,7 +67,7 @@
             android:gravity="center_horizontal|center_vertical"
 
             android:onClick="onReturn"
-            android:text="Return" />
+            android:text="@string/back" />
 
 
         <ImageView
@@ -93,7 +84,7 @@
             android:gravity="center_horizontal|center_vertical"
 
             android:onClick="onCancel"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <ImageView
             android:layout_width="0dp"
@@ -106,8 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:onClick="onDone"
-            android:text="Done" />
+            android:onClick="onConfirm"
+            android:text="@string/confirm" />
 
         <ImageView
             android:layout_width="0dp"
@@ -133,12 +124,13 @@
             app:srcCompat="@color/transparent" />
 
         <Button
-            android:id="@+id/button_book"
+            android:id="@+id/button_return_book"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:onClick="onBook"
-            android:text="Book" />
+            android:onClick="onReturn"
+            android:text="@string/back" />
 
         <ImageView
             android:layout_width="0dp"
@@ -147,14 +139,15 @@
             app:srcCompat="@color/transparent" />
 
         <Button
-            android:id="@+id/button_return_book"
+            android:id="@+id/button_book"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:onClick="onBook"
-            android:text="Book" />
+            android:text="@string/button_book_address" />
 
         <ImageView
+            android:id="@+id/imageView6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

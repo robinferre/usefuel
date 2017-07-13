@@ -206,6 +206,9 @@ public class FragmentFuel extends Fragment implements View.OnClickListener {
 
                             builderCar.setTitle("Choose your car");
                             builderCar.setIcon(R.drawable.ic_menu_car);
+                            // if no car, spray a message
+                            if(listCar.get(0).getBrand().equals("none"))
+                                builderCar.setMessage("Edit your Cars in the tab \"Manage Cars\"");
                             builderCar.setCancelable(true);
                             builderCar.setSingleChoiceItems(list_car_string, -1, new DialogInterface.OnClickListener() {
                                 @Override
@@ -311,7 +314,7 @@ public class FragmentFuel extends Fragment implements View.OnClickListener {
                     if(!car_db.getBrand().equals("none") && !fuel_quantity.equals("none"))
                     {
                         // Create or Update Database Node
-                        mDatabase.child("orders").child(uID).child("status").setValue("address");
+                        mDatabase.child("orders").child(uID).child("status").setValue("quantity");
                     }
 
 
@@ -319,10 +322,8 @@ public class FragmentFuel extends Fragment implements View.OnClickListener {
                         case "none" :
                             buttonBook.setVisibility(View.GONE);
                             break;
-                        case "address":
+                        default:
                             buttonBook.setVisibility(View.VISIBLE);
-                            break;
-                        case "delivery":
                             break;
                     }
 

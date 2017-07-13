@@ -9,16 +9,20 @@ import android.location.Address;
 public class OrderFuel {
     private String fuelQuantity;
     private Car car;
-    private Address address;
+    private String address;
+    private double lat;
+    private double lng;
     private String price;
     private String status;
     private String deliverer;
 
     public OrderFuel(){}
-    public OrderFuel(String p_fuelQuantity, Car p_car, Address p_address, String p_price, String p_status, String p_deliverer){
+    public OrderFuel(String p_fuelQuantity, Car p_car, String p_address, double p_lat, double p_lng, String p_price, String p_status, String p_deliverer){
         fuelQuantity = p_fuelQuantity;
         car = p_car;
         address = p_address;
+        lat = p_lat;
+        lng = p_lng;
         price = p_price;
         status = p_status;
         deliverer = p_deliverer;
@@ -36,11 +40,23 @@ public class OrderFuel {
     public void setCar(Car car) {
         this.car = car;
     }
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
+    }
+    public double getLat() {
+        return lat;
+    }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+    public double getLng() {
+        return lng;
+    }
+    public void setLng(double lng) {
+        this.lng = lng;
     }
     public String getPrice() {
         return price;

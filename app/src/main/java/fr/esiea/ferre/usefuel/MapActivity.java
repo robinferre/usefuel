@@ -1,5 +1,8 @@
 package fr.esiea.ferre.usefuel;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -8,7 +11,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,12 +49,14 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
     private GoogleMap mMap;
     private Marker marker;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        context = MapActivity.this;
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -65,6 +73,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+
 
         EditText location_tf = (EditText)findViewById(R.id.TFaddress);
         String location = location_tf.getText().toString();
@@ -77,18 +87,91 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            //TODO block if address is bullshit like "flekadhgljzhg" it crash
 
+            //show a marker from the address entered
             Address address = addressList.get(0);
+            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
+            //adjust camera
+            CameraPosition myPosition = new CameraPosition.Builder().target(latLng).zoom(17).bearing(0).tilt(30).build();
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(myPosition));
+
+            //place marker
+            if(marker == null){
+                marker = mMap.addMarker(new MarkerOptions().position(latLng).title("Address"));
+            }
+            else {
+                marker.setPosition(latLng);
+            }
+
+            //update database with the address entered
             firebaseUser = firebaseAuth.getCurrentUser();
             String uID = firebaseUser.getUid();
-            mDatabase.child("orders").child(uID).child("address").setValue(address);
+            mDatabase.child("orders").child(uID).child("address").setValue(location);
+            mDatabase.child("orders").child(uID).child("lat").setValue(address.getLatitude());
+            mDatabase.child("orders").child(uID).child("lng").setValue(address.getLongitude());
 
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng ));
-
+            //Hide keyboard after button
+            InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+
+    }
+
+    public void onReturn(View view)
+    {
+        firebaseUser = firebaseAuth.getCurrentUser();
+        String uID = firebaseUser.getUid();
+        mDatabase.child("orders").child(uID).child("address").setValue("none");
+        mDatabase.child("orders").child(uID).child("lat").setValue(0);
+        mDatabase.child("orders").child(uID).child("lng").setValue(0);
+
+        finish();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+    }
+
+    public void onBook(View view)
+    {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+        final String uid = FireUser.getUid().toString();
+        mDatabase.child("orders").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String address =  dataSnapshot.child("address").getValue(String.class);
+
+                //get searched address and place a marker
+                if(address.equals("none")){
+
+                    final AlertDialog.Builder builderBook = new AlertDialog.Builder(MapActivity.this);
+                    final AlertDialog myDialog;
+                    builderBook.setTitle("Booking");
+                    builderBook.setIcon(R.drawable.ic_menu_map);
+                    builderBook.setMessage("Choose an address before booking");
+
+                    //Button to decide what to do next
+                    builderBook.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //nothing here, just pass
+                        }
+                    });
+                    myDialog = builderBook.create();
+                    myDialog.show();
+                }
+                else
+                    startActivity(new Intent(getApplicationContext(),LoadingScreenBookActivity.class));
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read value
+            }
+        });
 
     }
 
@@ -105,10 +188,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    Address address =  dataSnapshot.child("address").getValue(Address.class);
+                    String address =  dataSnapshot.child("address").getValue(String.class);
 
                     //get searched address and place a marker
-                    if(address != null){
+                    if(address != "none"){
                     }
                 }
                 @Override
@@ -135,30 +218,23 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]
-                        {
-                                android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                requestPermissions(new String[]{
+                                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                                android.Manifest.permission.ACCESS_COARSE_LOCATION,
                                 android.Manifest.permission.INTERNET
                         }, 10);
             }
             return;
         }
 
-        if(mMap!=null){
-            mMap.setMyLocationEnabled(true);
-        }
-
         //Geolocalise l'utilisateur (Point bleu)
         if(mMap!=null){
+            mMap.setMyLocationEnabled(true);
             Location myLocation = mMap.getMyLocation();
 
             if(myLocation !=null){
-                LatLng myLatLng = new LatLng(myLocation.getLatitude(),
-                        myLocation.getLongitude());
-
-
-                CameraPosition myPosition = new CameraPosition.Builder()
-                        .target(myLatLng).zoom(17).bearing(90).tilt(30).build();
+                LatLng myLatLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+                CameraPosition myPosition = new CameraPosition.Builder().target(myLatLng).zoom(17).bearing(0).tilt(30).build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(myPosition));
             }
         }

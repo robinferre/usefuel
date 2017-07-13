@@ -30,12 +30,20 @@
     <string name="plate">Add last 3 digits of your plate</string>
     <string name="fuel">Add type of fuel</string>
 
+    <string name="none">None</string>
+    <string name="search">Search</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm delivery</string>
 
     <string name="fuel_choose_car">Choose car :</string>
     <string name="fuel_choose_quantity">Desired quantity :</string>
     <string name="fuel_estimated_price">Estimated price :</string>
 
-    <string name="button_book_address">Find your address</string>
+    <string name="button_book_quantity">Find your address</string>
+    <string name="button_book_address">Book fuel</string>
 
     <string name="wbad1_title">Be your own boss</string>
     <string name="wbad1_content">Do you want to be a delivery man?\nWith Use\'Fuel it\'s very easy and you\ncan start earn money directly</string>
@@ -46,6 +54,9 @@
     <string name="wbad4_title">apply@usefuel.com</string>
     <string name="wbad4_content">Send us an email to\napply as a delivery person.\nJoin the Use\'fuel team</string>
 
+    <string name="wait_deliverer">Please wait,\nwe are finding a deliverer \nfor your fuel</string>
+    <string name="no_deliverer">No deliverer responded yet.\nWait a few second to resume search\nOr press Cancel</string>
+    <string name="really_no_deliverer">Our deliverer are really busy.\nTry again later !</string>
 
     <string-array name="car_brand">
         <item>Other</item>

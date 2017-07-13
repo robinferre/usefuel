@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:gravity="left|center_vertical"
+            android:gravity="start|center_vertical"
             fontPath="fonts/Quicksand_Book.otf"
             android:text="@string/menu_car"
             android:textSize="20sp"/>
@@ -61,8 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left|bottom"
-            android:text="None"
+            android:gravity="start|bottom"
+            android:text="@string/none"
             fontPath="fonts/Quicksand_Book.otf"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -72,7 +72,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="Edit" />
+            android:text="@string/edit" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/car10layout"
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="start"
             fontPath="fonts/Quicksand_Book.otf"
             android:textSize="22sp" />
         <Button
@@ -96,7 +96,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="Delete" />
+            android:text="@string/delete" />
     </LinearLayout>
 
     <ImageView
@@ -124,8 +124,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left|bottom"
-            android:text="None"
+            android:gravity="start|bottom"
+            android:text="@string/none"
             fontPath="fonts/Quicksand_Book.otf"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -135,7 +135,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="Edit" />
+            android:text="@string/edit" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/car20layout"
@@ -150,7 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="start"
             fontPath="fonts/Quicksand_Book.otf"
             android:textSize="22sp" />
         <Button
@@ -159,7 +159,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="Delete" />
+            android:text="@string/delete" />
     </LinearLayout>
 
 
@@ -189,8 +189,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left|bottom"
-            android:text="None"
+            android:gravity="start|bottom"
+            android:text="@string/none"
             fontPath="fonts/Quicksand_Book.otf"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -200,7 +200,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="Edit" />
+            android:text="@string/edit" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/car30layout"
@@ -215,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="start"
             fontPath="fonts/Quicksand_Book.otf"
             android:textSize="22sp" />
         <Button
@@ -224,7 +224,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="Delete" />
+            android:text="@string/delete" />
     </LinearLayout>
 
     <ImageView
@@ -252,8 +252,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left|bottom"
-            android:text="None"
+            android:gravity="start|bottom"
+            android:text="@string/none"
             fontPath="fonts/Quicksand_Book.otf"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -263,7 +263,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="Edit" />
+            android:text="@string/edit" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/car40layout"
@@ -278,7 +278,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="start"
             fontPath="fonts/Quicksand_Book.otf"
             android:textSize="22sp" />
         <Button
@@ -287,7 +287,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="Delete" />
+            android:text="@string/delete" />
     </LinearLayout>
 
 

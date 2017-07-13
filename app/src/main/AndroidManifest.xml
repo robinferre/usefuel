@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -43,6 +43,11 @@
         <activity
             android:name=".LoadingScreenActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".LoadingScreenBookActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".MapActivity"
             android:screenOrientation="portrait" />
