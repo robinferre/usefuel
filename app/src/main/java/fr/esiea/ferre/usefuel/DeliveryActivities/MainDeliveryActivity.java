@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import fr.esiea.ferre.usefuel.DeliveryActivities.fragmentDeliveryClasses.FragmentDeliveryProfile;
+import fr.esiea.ferre.usefuel.DeliveryActivities.fragmentDeliveryClasses.FragmentOrdersLocation;
 import fr.esiea.ferre.usefuel.R;
 
 public class MainDeliveryActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class MainDeliveryActivity extends AppCompatActivity {
 
 
         final Fragment profileDeliverFragment = new FragmentDeliveryProfile();
+        final Fragment ordersPositionFragment = new FragmentOrdersLocation();
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
 
         if (savedInstanceState == null) {
@@ -41,6 +43,10 @@ public class MainDeliveryActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.profileItem) {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragmentContainer, profileDeliverFragment).commit();
+                } else if (item.getItemId() ==  R.id.ordersItem){
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer, ordersPositionFragment).commit();
+
                 }
                 return true;
             }
