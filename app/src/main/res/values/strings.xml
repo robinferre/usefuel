@@ -11,6 +11,7 @@
     <string name="menu_car">Manage Cars</string>
     <string name="menu_fuel">Order Fuel</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_orders">Orders</string>
 
     <string name="login_email">Enter your email</string>
     <string name="login_pwd">Enter your password</string>

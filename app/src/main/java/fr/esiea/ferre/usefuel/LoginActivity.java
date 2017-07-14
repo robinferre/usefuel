@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.esiea.ferre.usefuel.DeliveryActivities.MainDeliveryActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -116,6 +117,56 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
     }
+    private void adminLogin(){
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+
+        boolean validForm = true;
+
+        if (TextUtils.isEmpty(email)) {
+            //If email is empty
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+            validForm = false;
+            return;
+        }
+        else if (!findMatch(email,"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-z0-9.-]+$")) {
+            //If email is empty
+            Toast.makeText(this, "Please enter valid email", Toast.LENGTH_SHORT).show();
+            validForm = false;
+            return;
+        }
+        else if (TextUtils.isEmpty(password)) {
+            //If password is empty
+            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
+            validForm = false;
+            return;
+        }
+
+        //IF VALIDATIONS ARE OK
+        if(validForm) {
+
+            progressDialog.setMessage("Login...");
+            progressDialog.show();
+
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressDialog.dismiss();
+
+                            if (task.isSuccessful()) {
+
+                                //Start profile Activity
+
+                                startActivity(new Intent(getApplicationContext(), MainDeliveryActivity.class));
+                            }
+                        }
+
+                    });
+
+        }
+    }
+
 
     // Calligraphy dependencies required that
     @Override
@@ -144,7 +195,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if(view == buttonSignIn){
-            userLogin();
+            if (editTextEmail.getText().toString().equals("raphael.sidoli@gmail.com")){
+                adminLogin();
+            }
+            else {
+                userLogin();
+            }
         }
         if (view == textViewSignIn){
             finish();
