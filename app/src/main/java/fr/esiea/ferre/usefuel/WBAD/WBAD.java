@@ -21,6 +21,7 @@ import android.widget.TextView;
 import fr.esiea.ferre.usefuel.Intromanager;
 import fr.esiea.ferre.usefuel.LoginActivity;
 import fr.esiea.ferre.usefuel.R;
+import fr.esiea.ferre.usefuel.RegisterActivity;
 
 public class WBAD extends AppCompatActivity {
 
@@ -67,7 +68,8 @@ public class WBAD extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(WBAD.this,LoginActivity.class);
+                Intent i = new Intent(WBAD.this,RegisterActivity.class);
+                i.putExtra("value1","user");
                 startActivity(i);
                 finish();
             }
@@ -81,7 +83,8 @@ public class WBAD extends AppCompatActivity {
                     viewPager.setCurrentItem(current);
                 }
                 else {
-                    Intent i = new Intent(WBAD.this,LoginActivity.class);
+                    Intent i = new Intent(WBAD.this,RegisterActivity.class);
+                    i.putExtra("value1","deliverer");
                     startActivity(i);
                     finish();
 

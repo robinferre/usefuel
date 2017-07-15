@@ -15,9 +15,11 @@ public class OrderFuel {
     private String price;
     private String status;
     private String deliverer;
+    private double latDeliv;
+    private double lngDelive;
 
     public OrderFuel(){}
-    public OrderFuel(String p_fuelQuantity, Car p_car, String p_address, double p_lat, double p_lng, String p_price, String p_status, String p_deliverer){
+    public OrderFuel(String p_fuelQuantity, Car p_car, String p_address, double p_lat, double p_lng, String p_price, String p_status, String p_deliverer, double p_latDeliv, double p_lngDeliv){
         fuelQuantity = p_fuelQuantity;
         car = p_car;
         address = p_address;
@@ -26,6 +28,8 @@ public class OrderFuel {
         price = p_price;
         status = p_status;
         deliverer = p_deliverer;
+        latDeliv = p_latDeliv;
+        lngDelive = p_lngDeliv;
     }
 
     public String getFuelQuantity() {
@@ -75,6 +79,19 @@ public class OrderFuel {
     }
     public void setDeliverer(String deliverer) {
         this.deliverer = deliverer;
+    }
+
+    public double getLatDeliv() {
+        return latDeliv;
+    }
+    public void setLatDeliv(double latDeliv) {
+        this.latDeliv = latDeliv;
+    }
+    public double getLngDelive() {
+        return lngDelive;
+    }
+    public void setLngDelive(double lngDelive) {
+        this.lngDelive = lngDelive;
     }
 
 }

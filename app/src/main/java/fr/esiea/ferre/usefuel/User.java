@@ -8,12 +8,14 @@ public class User {
 
     private String username;
     private String mail;
+    private String type;
 
     public User(){}
 
-    public User(String p_name, String p_mail){
+    public User(String p_name, String p_mail, String p_type){
         username = p_name;
         mail = p_mail;
+        type = p_type;
     }
 
     public String getUsername() {
@@ -28,6 +30,13 @@ public class User {
     }
     public void setMail(String p_mail) {
         mail = p_mail;
+    }
+
+    public String getType() {
+        return type;
+    }
+    public void setType(String p_type) {
+        type = p_type;
     }
 }
 

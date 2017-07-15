@@ -45,11 +45,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
+    String user_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras == null){
+            return;
+        }
+        String value_user_type = extras.getString("value1");
+        if (value_user_type != null) {
+            user_type = value_user_type;
+        }
 
         // Allows Firebase database offline mode
         /*FirebaseDatabase.getInstance().setPersistenceEnabled(true);*/
@@ -153,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 // init to database user informations
                                 firebaseUser = firebaseAuth.getCurrentUser();
                                 String uID = firebaseUser.getUid();
-                                User user = new User(username, firebaseUser.getEmail());
+                                User user = new User(username, firebaseUser.getEmail(), user_type);
                                 Car car1 = new Car("none", "none", "none", "none");
                                 Car car2 = new Car("none", "none", "none", "none");
                                 Car car3 = new Car("none", "none", "none", "none");
@@ -165,7 +175,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 mDatabase.child("cars").child(uID).child("car3").setValue(car3);
                                 mDatabase.child("cars").child(uID).child("car4").setValue(car4);
 
-                                OrderFuel order = new OrderFuel("none", car1, "none", 0, 0, "none", "none", "none");
+                                OrderFuel order = new OrderFuel("none", car1, "none", 0, 0, "none", "none", "none", 0, 0);
 
                                 mDatabase.child("orders").child(uID).child("fuelQuantity").setValue(order.getFuelQuantity());
                                 mDatabase.child("orders").child(uID).child("car").setValue(order.getCar());
