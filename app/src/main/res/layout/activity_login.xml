@@ -77,7 +77,8 @@
             android:background="@drawable/ripple"
             android:textSize="20sp"
             fontPath="fonts/Quicksand_Book.otf"
-            android:text="@string/login_login" />
+            android:text="@string/login_login"
+            android:textStyle="bold"/>
 
         <!--<TextView
             android:id="@+id/textViewSignIn"

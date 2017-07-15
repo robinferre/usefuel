@@ -7,6 +7,36 @@
     <color name="colorLight">#ffffff</color>
     <color name="transparent">#00484848</color>
 
+
+    <color name="colorPink">#E91E63</color>
+    <color name="colordOrange">#FFA726</color>
+    <color name="colorBlue">#42A5F5</color>
+
+    <color name="dot_dark_screen1">#880E4F</color>
+    <color name="dot_dark_screen2">#FF6D00</color>
+    <color name="dot_dark_screen3">#1A237E</color>
+
+    <color name="dot_light_screen1">#F48FB1</color>
+    <color name="dot_light_screen2">#FFAB91</color>
+    <color name="dot_light_screen3">#90CAF9</color>
+
+    <array name="dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+
+
+    </array>
+
+    <array name="dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+
+
+
+    </array>
+
     <color name="blue">#669ec1</color>
     <color name="red">#ff3636</color>
     <color name="green">#66d66a</color>

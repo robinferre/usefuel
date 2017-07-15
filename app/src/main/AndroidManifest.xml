@@ -58,7 +58,8 @@
             android:value="AIzaSyB3ZUGVw3GCrRPz1V_LvG4xHgg8O1aJg3Q" />
 
         <activity android:name=".WBADeliverActivity" />
-        <activity android:name=".DeliveryActivities.MainDeliveryActivity"></activity>
+        <activity android:name=".DeliveryActivities.MainDeliveryActivity" />
+        <activity android:name=".WBAD.WBAD"></activity>
     </application>
 
 </manifest>

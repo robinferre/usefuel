@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.esiea.ferre.usefuel.WBAD.WBAD;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
@@ -237,7 +238,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if (view == textViewBeDeliver){
-            startActivity(new Intent(this,WBADeliverActivity.class));
+            startActivity(new Intent(this,WBAD.class));
 
 
         }
