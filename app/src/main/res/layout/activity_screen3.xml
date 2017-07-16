@@ -20,17 +20,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Use'Fuel team"
+            android:text="@string/wbad3_title"
             android:textColor="@android:color/white"
-            android:textSize="35dp"
+            android:textSize="30sp"
             android:textStyle="bold"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="help you"
+            android:layout_gravity="center"
+            android:paddingTop="60dp"
             android:textColor="@android:color/white"
-            android:textSize="35dp"
-            android:textStyle="bold"/>
+            android:text="@string/wbad3_content"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+        
+
 
     </LinearLayout>
 

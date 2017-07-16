@@ -19,11 +19,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Be your own boss"
+            android:text="@string/wbad1_title"
+            android:layout_marginTop="40dp"
             android:textColor="@android:color/white"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="60dp"
+            android:textColor="@android:color/white"
+            android:text="@string/wbad1_content"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
 
     </LinearLayout>
+
 
 </RelativeLayout>

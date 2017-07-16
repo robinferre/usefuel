@@ -19,10 +19,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fuel"
+            android:text="@string/wbad2_title"
+            android:layout_marginTop="40dp"
             android:textColor="@android:color/white"
-            android:textSize="40dp"
+            android:textSize="30sp"
             android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="60dp"
+            android:textColor="@android:color/white"
+            android:text="@string/wbad2_content"
+            android:textAlignment="center"
+            android:textSize="23sp" />
 
     </LinearLayout>
 
