@@ -1,6 +1,4 @@
-package fr.esiea.ferre.usefuel;
-
-import android.location.Address;
+package fr.esiea.ferre.usefuel.Objects;
 
 /**
  * Created by Raphaël on 29/06/2017.

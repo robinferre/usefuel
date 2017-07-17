@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="30dp"
-    tools:context="fr.esiea.ferre.usefuel.MainActivity"
+    tools:context="fr.esiea.ferre.usefuel.UserActivities.MainActivity"
     >
 
     <TextView

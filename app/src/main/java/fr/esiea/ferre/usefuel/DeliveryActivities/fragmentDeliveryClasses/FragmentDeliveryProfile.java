@@ -18,9 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import fr.esiea.ferre.usefuel.LoginActivity;
+import fr.esiea.ferre.usefuel.UserActivities.LoginActivity;
 import fr.esiea.ferre.usefuel.R;
-import fr.esiea.ferre.usefuel.User;
+import fr.esiea.ferre.usefuel.Objects.User;
 
 /**
  * A simple {@link Fragment} subclass.

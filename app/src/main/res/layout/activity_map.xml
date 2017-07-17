@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:weightSum="100"
     android:background="@color/colorLight"
-    tools:context="fr.esiea.ferre.usefuel.MapActivity">
+    tools:context="fr.esiea.ferre.usefuel.UserActivities.MapActivity">
 
     <LinearLayout
         android:id="@+id/layout_search"
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="79.5"
-        tools:context="fr.esiea.ferre.usefuel.MapActivity" />
+        tools:context="fr.esiea.ferre.usefuel.UserActivities.MapActivity" />
 
     <LinearLayout
         android:id="@+id/layout_rcd"

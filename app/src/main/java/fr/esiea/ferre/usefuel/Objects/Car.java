@@ -1,4 +1,4 @@
-package fr.esiea.ferre.usefuel;
+package fr.esiea.ferre.usefuel.Objects;
 
 /**
  * Created by rob on 6/2/2017.

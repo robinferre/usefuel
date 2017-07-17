@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,17 +21,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
-import fr.esiea.ferre.usefuel.Car;
-import fr.esiea.ferre.usefuel.LoginActivity;
-import fr.esiea.ferre.usefuel.MainActivity;
-import fr.esiea.ferre.usefuel.MapActivity;
-import fr.esiea.ferre.usefuel.OrderFuel;
+import fr.esiea.ferre.usefuel.Objects.Car;
+import fr.esiea.ferre.usefuel.UserActivities.MapActivity;
+import fr.esiea.ferre.usefuel.Objects.OrderFuel;
 import fr.esiea.ferre.usefuel.R;
 
 

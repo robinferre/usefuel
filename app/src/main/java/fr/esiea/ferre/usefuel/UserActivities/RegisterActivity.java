@@ -1,4 +1,4 @@
-package fr.esiea.ferre.usefuel;
+package fr.esiea.ferre.usefuel.UserActivities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -27,6 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.esiea.ferre.usefuel.Objects.Car;
+import fr.esiea.ferre.usefuel.Objects.OrderFuel;
+import fr.esiea.ferre.usefuel.Objects.User;
+import fr.esiea.ferre.usefuel.R;
 import fr.esiea.ferre.usefuel.WBAD.WBAD;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 

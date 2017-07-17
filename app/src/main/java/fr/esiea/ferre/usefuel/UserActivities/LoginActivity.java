@@ -1,12 +1,10 @@
-package fr.esiea.ferre.usefuel;
+package fr.esiea.ferre.usefuel.UserActivities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -26,11 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.esiea.ferre.usefuel.DeliveryActivities.MainDeliveryActivity;
+import fr.esiea.ferre.usefuel.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -79,6 +77,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 break;
                             case "deliverer":
                                 startActivity(new Intent(getApplicationContext(), MainDeliveryActivity.class));
+                                break;
+                            default:
+                                break;
                         }
                     }
                     @Override

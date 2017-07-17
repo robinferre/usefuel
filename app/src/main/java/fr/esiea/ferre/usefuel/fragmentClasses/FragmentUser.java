@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import fr.esiea.ferre.usefuel.LoginActivity;
+import fr.esiea.ferre.usefuel.UserActivities.LoginActivity;
 import fr.esiea.ferre.usefuel.R;
-import fr.esiea.ferre.usefuel.User;
+import fr.esiea.ferre.usefuel.Objects.User;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

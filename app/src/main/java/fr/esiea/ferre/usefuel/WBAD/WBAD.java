@@ -18,10 +18,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import fr.esiea.ferre.usefuel.Intromanager;
-import fr.esiea.ferre.usefuel.LoginActivity;
+import fr.esiea.ferre.usefuel.UserActivities.Intromanager;
+import fr.esiea.ferre.usefuel.UserActivities.LoginActivity;
 import fr.esiea.ferre.usefuel.R;
-import fr.esiea.ferre.usefuel.RegisterActivity;
+import fr.esiea.ferre.usefuel.UserActivities.RegisterActivity;
 
 public class WBAD extends AppCompatActivity {
 

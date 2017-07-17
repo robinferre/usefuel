@@ -1,4 +1,4 @@
-package fr.esiea.ferre.usefuel;
+package fr.esiea.ferre.usefuel.UserActivities;
 
 // Created by Robin
 
@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import fr.esiea.ferre.usefuel.R;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentCar;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentFuel;
 import fr.esiea.ferre.usefuel.fragmentClasses.FragmentSettings;

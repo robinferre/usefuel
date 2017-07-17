@@ -1,4 +1,4 @@
-package fr.esiea.ferre.usefuel;
+package fr.esiea.ferre.usefuel.UserActivities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import fr.esiea.ferre.usefuel.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 

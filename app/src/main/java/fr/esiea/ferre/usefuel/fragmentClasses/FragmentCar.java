@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.esiea.ferre.usefuel.Car;
+import fr.esiea.ferre.usefuel.Objects.Car;
 import fr.esiea.ferre.usefuel.R;
 
 public class FragmentCar extends Fragment {

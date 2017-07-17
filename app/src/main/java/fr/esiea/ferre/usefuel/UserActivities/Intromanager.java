@@ -1,4 +1,4 @@
-package fr.esiea.ferre.usefuel;
+package fr.esiea.ferre.usefuel.UserActivities;
 
 import android.content.Context;
 import android.content.SharedPreferences;

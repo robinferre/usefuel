@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".LaunchActivity"
+            android:name=".UserActivities.LaunchActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,25 +29,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".UserActivities.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".UserActivities.MainActivity"
             android:screenOrientation="portrait">
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".UserActivities.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoadingScreenActivity"
+            android:name=".UserActivities.LoadingScreenActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoadingScreenBookActivity"
+            android:name=".UserActivities.LoadingScreenBookActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MapActivity"
+            android:name=".UserActivities.MapActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
