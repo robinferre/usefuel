@@ -5,10 +5,8 @@ package fr.esiea.ferre.usefuel.UserActivities;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,10 +19,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import fr.esiea.ferre.usefuel.R;
-import fr.esiea.ferre.usefuel.fragmentClasses.FragmentCar;
-import fr.esiea.ferre.usefuel.fragmentClasses.FragmentFuel;
-import fr.esiea.ferre.usefuel.fragmentClasses.FragmentSettings;
-import fr.esiea.ferre.usefuel.fragmentClasses.FragmentUser;
+import fr.esiea.ferre.usefuel.UserActivities.fragmentClasses.FragmentCar;
+import fr.esiea.ferre.usefuel.UserActivities.fragmentClasses.FragmentFuel;
+import fr.esiea.ferre.usefuel.UserActivities.fragmentClasses.FragmentSettings;
+import fr.esiea.ferre.usefuel.UserActivities.fragmentClasses.FragmentUser;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 

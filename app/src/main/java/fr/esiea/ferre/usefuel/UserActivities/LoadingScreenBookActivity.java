@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import fr.esiea.ferre.usefuel.R;
@@ -31,6 +34,10 @@ public class LoadingScreenBookActivity extends AppCompatActivity {
     TextView text;
     ImageView logo_circle;
     AnimationSet animSet;
+
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +68,20 @@ public class LoadingScreenBookActivity extends AppCompatActivity {
 
     }
 
+    // Block the return button
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+
     public void onCancel(View view){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+        final String uid = FireUser.getUid().toString();
+        mDatabase.child("orders").child(uid).child("status").setValue("choosing");
         finish();
     }
 

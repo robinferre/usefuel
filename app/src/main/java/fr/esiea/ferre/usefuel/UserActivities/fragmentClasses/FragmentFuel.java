@@ -1,4 +1,4 @@
-package fr.esiea.ferre.usefuel.fragmentClasses;
+package fr.esiea.ferre.usefuel.UserActivities.fragmentClasses;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -76,7 +76,6 @@ public class FragmentFuel extends Fragment implements View.OnClickListener {
         switch(v.getId()){
 //book with informations stocked
             case R.id.button_book :
-                getActivity().finish();
                 Intent intent = new Intent(getActivity(), MapActivity.class);
                 startActivity(intent);
                 break;
@@ -271,7 +270,7 @@ public class FragmentFuel extends Fragment implements View.OnClickListener {
         if(FireUser != null)
         {
             String uid = FireUser.getUid().toString();
-            mDatabase.child("orders").child(uid).addValueEventListener(new ValueEventListener() {
+            mDatabase.child("orders").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -307,7 +306,7 @@ public class FragmentFuel extends Fragment implements View.OnClickListener {
                     if(!car_db.getBrand().equals("none") && !fuel_quantity.equals("none"))
                     {
                         // Create or Update Database Node
-                        mDatabase.child("orders").child(uID).child("status").setValue("quantity");
+                        mDatabase.child("orders").child(uID).child("status").setValue("choosing");
                     }
 
 

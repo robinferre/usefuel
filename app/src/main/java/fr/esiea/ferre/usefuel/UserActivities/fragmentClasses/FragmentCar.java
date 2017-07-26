@@ -1,4 +1,4 @@
-package fr.esiea.ferre.usefuel.fragmentClasses;
+package fr.esiea.ferre.usefuel.UserActivities.fragmentClasses;
 
 import android.content.DialogInterface;
 import android.os.Bundle;

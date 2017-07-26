@@ -128,8 +128,19 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         mDatabase.child("orders").child(uID).child("lng").setValue(0);
 
         finish();
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
+    // Override onBack to do the same thing as onReturn
+    @Override
+    public void onBackPressed() {
+        firebaseUser = firebaseAuth.getCurrentUser();
+        String uID = firebaseUser.getUid();
+        mDatabase.child("orders").child(uID).child("address").setValue("none");
+        mDatabase.child("orders").child(uID).child("lat").setValue(0);
+        mDatabase.child("orders").child(uID).child("lng").setValue(0);
+
+        finish();
+    }
+
 
     public void onBook(View view)
     {
@@ -163,8 +174,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                     myDialog = builderBook.create();
                     myDialog.show();
                 }
-                else
+                else{
                     startActivity(new Intent(getApplicationContext(),LoadingScreenBookActivity.class));
+                    mDatabase.child("orders").child(uid).child("status").setValue("booking");
+                }
 
             }
             @Override

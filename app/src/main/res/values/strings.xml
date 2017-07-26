@@ -38,6 +38,8 @@
     <string name="back">Back</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm delivery</string>
+    <string name="options">Options</string>
+    <string name="refresh">Refresh</string>
 
     <string name="fuel_choose_car">Choose car :</string>
     <string name="fuel_choose_quantity">Desired quantity :</string>
@@ -94,6 +96,21 @@
         <item>Pink</item>
         <item>Green</item>
     </string-array>
+
+    <string-array name="deliver_distance">
+        <item>5km</item>
+        <item>10km</item>
+        <item>20km</item>
+        <item>30km</item>
+    </string-array>
+
+    <string-array name="deliver_quantity">
+        <item>5L and more</item>
+        <item>20L and more</item>
+        <item>50L and more</item>
+    </string-array>
+
+
 
     <string-array name="car_fuel">
         <item>SP95</item>

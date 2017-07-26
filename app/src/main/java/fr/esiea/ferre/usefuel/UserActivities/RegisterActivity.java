@@ -179,7 +179,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 mDatabase.child("cars").child(uID).child("car3").setValue(car3);
                                 mDatabase.child("cars").child(uID).child("car4").setValue(car4);
 
-                                OrderFuel order = new OrderFuel("none", car1, "none", 0, 0, "none", "none", "none", 0, 0);
+                                OrderFuel order = new OrderFuel("none", car1, "none", 0.0, 0.0, "none", "none", "none", 0.0, 0.0);
 
                                 mDatabase.child("orders").child(uID).child("fuelQuantity").setValue(order.getFuelQuantity());
                                 mDatabase.child("orders").child(uID).child("car").setValue(order.getCar());
@@ -189,6 +189,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 mDatabase.child("orders").child(uID).child("price").setValue(order.getPrice());
                                 mDatabase.child("orders").child(uID).child("status").setValue(order.getStatus());
                                 mDatabase.child("orders").child(uID).child("deliverer").setValue(order.getDeliverer());
+                                mDatabase.child("orders").child(uID).child("latDeliv").setValue(order.getLatDeliv());
+                                mDatabase.child("orders").child(uID).child("lngDeliv").setValue(order.getLngDelive());
 
 
                                 // go on login page
