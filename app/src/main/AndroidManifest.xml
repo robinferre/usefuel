@@ -3,6 +3,7 @@
     package="fr.esiea.ferre.usefuel">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -58,6 +59,8 @@
             android:value="AIzaSyB3ZUGVw3GCrRPz1V_LvG4xHgg8O1aJg3Q" />
 
         <activity android:name=".DeliveryActivities.MainDeliveryActivity" />
+        <activity android:name=".DeliveryActivities.BookedActivity" />
+
         <activity android:name=".WBAD.WBAD"></activity>
     </application>
 

@@ -168,29 +168,38 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 firebaseUser = firebaseAuth.getCurrentUser();
                                 String uID = firebaseUser.getUid();
                                 User user = new User(username, firebaseUser.getEmail(), user_type);
-                                Car car1 = new Car("none", "none", "none", "none");
-                                Car car2 = new Car("none", "none", "none", "none");
-                                Car car3 = new Car("none", "none", "none", "none");
-                                Car car4 = new Car("none", "none", "none", "none");
 
                                 mDatabase.child("users").child(uID).setValue(user);
-                                mDatabase.child("cars").child(uID).child("car1").setValue(car1);
-                                mDatabase.child("cars").child(uID).child("car2").setValue(car2);
-                                mDatabase.child("cars").child(uID).child("car3").setValue(car3);
-                                mDatabase.child("cars").child(uID).child("car4").setValue(car4);
 
-                                OrderFuel order = new OrderFuel("none", car1, "none", 0.0, 0.0, "none", "none", "none", 0.0, 0.0);
+                                if(user_type.equals("user")){
+                                    Car car1 = new Car("none", "none", "none", "none");
+                                    Car car2 = new Car("none", "none", "none", "none");
+                                    Car car3 = new Car("none", "none", "none", "none");
+                                    Car car4 = new Car("none", "none", "none", "none");
 
-                                mDatabase.child("orders").child(uID).child("fuelQuantity").setValue(order.getFuelQuantity());
-                                mDatabase.child("orders").child(uID).child("car").setValue(order.getCar());
-                                mDatabase.child("orders").child(uID).child("address").setValue(order.getAddress());
-                                mDatabase.child("orders").child(uID).child("lat").setValue(order.getLat());
-                                mDatabase.child("orders").child(uID).child("lng").setValue(order.getLng());
-                                mDatabase.child("orders").child(uID).child("price").setValue(order.getPrice());
-                                mDatabase.child("orders").child(uID).child("status").setValue(order.getStatus());
-                                mDatabase.child("orders").child(uID).child("deliverer").setValue(order.getDeliverer());
-                                mDatabase.child("orders").child(uID).child("latDeliv").setValue(order.getLatDeliv());
-                                mDatabase.child("orders").child(uID).child("lngDeliv").setValue(order.getLngDelive());
+
+                                    mDatabase.child("cars").child(uID).child("car1").setValue(car1);
+                                    mDatabase.child("cars").child(uID).child("car2").setValue(car2);
+                                    mDatabase.child("cars").child(uID).child("car3").setValue(car3);
+                                    mDatabase.child("cars").child(uID).child("car4").setValue(car4);
+
+                                    OrderFuel order = new OrderFuel("none", car1, "none", 0.0, 0.0, "none", "none", "none", 0.0, 0.0);
+
+                                    mDatabase.child("orders").child(uID).child("fuelQuantity").setValue(order.getFuelQuantity());
+                                    mDatabase.child("orders").child(uID).child("car").setValue(order.getCar());
+                                    mDatabase.child("orders").child(uID).child("address").setValue(order.getAddress());
+                                    mDatabase.child("orders").child(uID).child("lat").setValue(order.getLat());
+                                    mDatabase.child("orders").child(uID).child("lng").setValue(order.getLng());
+                                    mDatabase.child("orders").child(uID).child("price").setValue(order.getPrice());
+                                    mDatabase.child("orders").child(uID).child("status").setValue(order.getStatus());
+                                    mDatabase.child("orders").child(uID).child("deliverer").setValue(order.getDeliverer());
+                                    mDatabase.child("orders").child(uID).child("d_lat").setValue(order.getLatDeliv());
+                                    mDatabase.child("orders").child(uID).child("d_lng").setValue(order.getLngDelive());
+                                } else if (user_type.equals("deliverer")){
+                                    mDatabase.child("deliverer_info").child(uID).child("lat").setValue(0.0);
+                                    mDatabase.child("deliverer_info").child(uID).child("lng").setValue(0.0);
+                                }
+
 
 
                                 // go on login page

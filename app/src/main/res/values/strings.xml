@@ -61,6 +61,10 @@
     <string name="no_deliverer">No deliverer responded yet.\nWait a few second to resume search\nOr press Cancel</string>
     <string name="really_no_deliverer">Our deliverer are really busy.\nTry again later !</string>
 
+    <string name="booked_cancel">Are you sure you want to cancel the current delivery</string>
+    <string name="booked_map">Google Map</string>
+    <string name="booked_confirm">Have you delivered the fuel ?</string>
+
     <string-array name="car_brand">
         <item>Other</item>
         <item>Toyota</item>

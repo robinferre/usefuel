@@ -1,16 +1,20 @@
 package fr.esiea.ferre.usefuel.UserActivities;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -225,31 +229,23 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{
-                                android.Manifest.permission.ACCESS_FINE_LOCATION,
-                                android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                                android.Manifest.permission.INTERNET
-                        }, 10);
-            }
-            return;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+        } else {
+            // Show rationale and request permission.
         }
 
         //Geolocalise l'utilisateur (Point bleu)
         if(mMap!=null){
             mMap.setMyLocationEnabled(true);
-            Location myLocation = mMap.getMyLocation();
-
-            if(myLocation !=null){
-                LatLng myLatLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-                CameraPosition myPosition = new CameraPosition.Builder().target(myLatLng).zoom(17).bearing(0).tilt(30).build();
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(myPosition));
-            }
+            mMap.getMyLocation();
         }
 
 
