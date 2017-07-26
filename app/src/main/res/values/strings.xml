@@ -65,6 +65,11 @@
     <string name="booked_map">Google Map</string>
     <string name="booked_confirm">Have you delivered the fuel ?</string>
 
+    <string name="button_booked_cancel">Cancel</string>
+    <string name="button_booked_map">GPS</string>
+    <string name="button_booked_confirm">Delivered</string>
+
+
     <string-array name="car_brand">
         <item>Other</item>
         <item>Toyota</item>

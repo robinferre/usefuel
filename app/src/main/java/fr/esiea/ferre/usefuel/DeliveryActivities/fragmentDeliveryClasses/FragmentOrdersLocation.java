@@ -140,6 +140,9 @@ public class FragmentOrdersLocation extends Fragment
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                             //if an order have the value booking and this value is not in the arraylsit already
 
+                            if (postSnapshot.child("status").getValue() == null)
+                                continue;
+
                             if (postSnapshot.child("status").getValue().equals("booking") && !OrderUidList.contains(postSnapshot.getKey())){
 
                                 // we put it in the arraylist
@@ -158,6 +161,7 @@ public class FragmentOrdersLocation extends Fragment
 
                                 // else if it does not have the value booking but is in the array list
                             }else if (!postSnapshot.child("status").getValue().equals("booking") && OrderUidList.contains(postSnapshot.getKey())){
+
                                 // remove the uid from the uid arraylist
                                 OrderUidList.remove(postSnapshot.getKey());
 
@@ -167,8 +171,8 @@ public class FragmentOrdersLocation extends Fragment
                                 hashMapMarker.remove(postSnapshot.getKey());
                                 hashMapOrder.remove(postSnapshot.getKey());
 
-
                             }
+
                         }
                     }
                     @Override

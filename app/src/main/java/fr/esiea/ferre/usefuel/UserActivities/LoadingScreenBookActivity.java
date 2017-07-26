@@ -1,10 +1,13 @@
 package fr.esiea.ferre.usefuel.UserActivities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnimationSet;
@@ -16,8 +19,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import fr.esiea.ferre.usefuel.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -37,6 +43,7 @@ public class LoadingScreenBookActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
+    String status;
 
 
     @Override
@@ -54,6 +61,46 @@ public class LoadingScreenBookActivity extends AppCompatActivity {
                 .build()
         );
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+        final String uid = FireUser.getUid().toString();
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        mDatabase.child("orders").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                status = dataSnapshot.child("status").getValue(String.class);
+
+                Log.d("firebase","data changed");
+                if (status == null)
+                    return;
+                if (status.equals("booked"))
+                {
+                    text.setText("");
+                    final AlertDialog myDialog;
+                    builder.setTitle("Yay ! we found a deliverer for you !");
+                    builder.setIcon(R.drawable.ic_menu_fuel);
+                    builder.setCancelable(false);
+                    //Button to decide what to do next
+                    builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+                    myDialog = builder.create();
+                    myDialog.show();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read value
+            }
+        });
+
         displayAnim();
 
 
@@ -62,6 +109,7 @@ public class LoadingScreenBookActivity extends AppCompatActivity {
             public void run() {
                 button_cancel.setVisibility(View.VISIBLE);
                 text.setText(getString(R.string.really_no_deliverer));
+                mDatabase.child("orders").child(uid).child("status").setValue("choosing");
             }
         },(5)*20000 + (6)*4000);
 

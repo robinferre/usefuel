@@ -1,21 +1,30 @@
 package fr.esiea.ferre.usefuel.DeliveryActivities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import fr.esiea.ferre.usefuel.Objects.OrderFuel;
 import fr.esiea.ferre.usefuel.R;
+import fr.esiea.ferre.usefuel.UserActivities.LoadingScreenBookActivity;
+import fr.esiea.ferre.usefuel.UserActivities.MapActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -31,6 +40,8 @@ public class BookedActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     String u_uid;
+    String username;
+    OrderFuel order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +67,38 @@ public class BookedActivity extends AppCompatActivity {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+        final String uid = FireUser.getUid().toString();
+        mDatabase.child("users").child(u_uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                username = dataSnapshot.child("username").getValue(String.class);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read value
+            }
+        });
+        mDatabase.child("orders").child(u_uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                order = dataSnapshot.getValue(OrderFuel.class);
+                text.setText(   username + " parking at\n"
+                                + order.getAddress() + "\n\n"
+                                + order.getCar().getBrand() + " " + order.getCar().getColor()  + "\n"
+                                + "-----" + order.getCar().getNumberPlate() + "\n\n"
+                                + order.getFuelQuantity() + "L of " + order.getCar().getFuelType() +  "\n\n"
+                                + order.getPrice());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read value
+            }
+        });
     }
 
     // Block the return button
@@ -76,13 +119,34 @@ public class BookedActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         FirebaseUser FireUser = firebaseAuth.getCurrentUser();
-        final String uid = FireUser.getUid().toString();
-        mDatabase.child("orders").child(uid).child("status").setValue("canceled");
-        finish();
+
+        final AlertDialog myDialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure you want to cancel this delivery ?");
+        builder.setIcon(R.drawable.ic_cancel);
+        builder.setCancelable(true);
+        builder.setMessage("Your client is waiting for you\nCanceling to much delivery will affect your visibility");
+        //Button to decide what to do next
+        builder.setPositiveButton("Cancel anyway", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mDatabase.child("orders").child(u_uid).child("status").setValue("canceled");
+                finish();
+            }
+        });
+        //Button to cancel
+        builder.setNegativeButton("Return", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //do nothing, cancel
+            }
+        });
+        myDialog = builder.create();
+        myDialog.show();
     }
 
     public void onMap(View view){
-        String strUri = "http://maps.google.com/maps?q=loc:" + 0 + "," + 0 + " (" + "Label which you want" + ")";
+        String strUri = "http://maps.google.com/maps?q=loc:" + order.getLat() + "," + order.getLng() + " (" + order.getAddress() + ")";
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
 
         intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
@@ -95,9 +159,30 @@ public class BookedActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         FirebaseUser FireUser = firebaseAuth.getCurrentUser();
-        final String uid = FireUser.getUid().toString();
-        mDatabase.child("orders").child(uid).child("status").setValue("finish");
-        finish();
+
+        final AlertDialog myDialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Have you delivered the fuel ?");
+        builder.setIcon(R.drawable.ic_done);
+        builder.setCancelable(true);
+        builder.setMessage("Once your client have received his fuel\nAnd when you have been paid\nYou can confirm the delivery");
+        //Button to decide what to do next
+        builder.setPositiveButton("Confirm delivery", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mDatabase.child("orders").child(u_uid).child("status").setValue("finished");
+                finish();
+            }
+        });
+        //Button to cancel
+        builder.setNegativeButton("Return", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //do nothing, cancel
+            }
+        });
+        myDialog = builder.create();
+        myDialog.show();
     }
 
 
