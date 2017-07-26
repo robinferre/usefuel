@@ -1,8 +1,9 @@
-package fr.esiea.ferre.usefuel.DeliveryActivities;
+package fr.esiea.ferre.usefuel.UserActivities;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +28,6 @@ import fr.esiea.ferre.usefuel.Objects.OrderFuel;
 import fr.esiea.ferre.usefuel.R;
 import fr.esiea.ferre.usefuel.UserActivities.LoadingScreenBookActivity;
 import fr.esiea.ferre.usefuel.UserActivities.MapActivity;
-import fr.esiea.ferre.usefuel.UserActivities.UserBookedActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -34,20 +35,24 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by rob on 7/26/2017.
  */
 
-public class BookedActivity extends AppCompatActivity {
+public class UserBookedActivity extends AppCompatActivity {
+
     TextView text;
+    TextView textPerc;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
 
-    String u_uid;
+    LatLng d_latlng;
     String username;
     OrderFuel order;
+    String d_uid;
+    int percentage = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booked);
+        setContentView(R.layout.activity_booked_user);
 
         Bundle extras = getIntent().getExtras();
         if (extras == null){
@@ -55,10 +60,11 @@ public class BookedActivity extends AppCompatActivity {
         }
         String value_user_type = extras.getString("value1");
         if (value_user_type != null) {
-            u_uid = value_user_type;
+            d_uid = value_user_type;
         }
 
         text = (TextView)findViewById(R.id.text);
+        textPerc = (TextView)findViewById(R.id.text_perc);
 
         // Set up of the Calligraphy dependencies, that allows us to use a custom font in a .xml layout file
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -72,37 +78,53 @@ public class BookedActivity extends AppCompatActivity {
 
         FirebaseUser FireUser = firebaseAuth.getCurrentUser();
         final String uid = FireUser.getUid().toString();
-        mDatabase.child("users").child(u_uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                username = dataSnapshot.child("username").getValue(String.class);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Failed to read value
-            }
-        });
-        mDatabase.child("orders").child(u_uid).addListenerForSingleValueEvent(new ValueEventListener() {
+
+        mDatabase.child("orders").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 order = dataSnapshot.getValue(OrderFuel.class);
-                text.setText(   username + " parking at\n"
-                                + order.getAddress() + "\n\n"
-                                + order.getCar().getBrand() + " " + order.getCar().getColor()  + "\n"
-                                + "-----" + order.getCar().getNumberPlate() + "\n\n"
-                                + order.getFuelQuantity() + "L of " + order.getCar().getFuelType() +  "\n\n"
-                                + order.getPrice());
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Failed to read value
             }
         });
-        mDatabase.child("orders").child(u_uid).child("status").addValueEventListener(new ValueEventListener() {
+        Log.d("firebase", d_uid);
+        mDatabase.child("users").child(d_uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                username = dataSnapshot.child("username").getValue(String.class);
+                text.setText(   username + " is bringing your fuel at\n"
+                        + order.getAddress() + "\n\n"
+                        + "for your " + order.getCar().getBrand() + " " + order.getCar().getColor()  + "\n"
+                        + "-----" + order.getCar().getNumberPlate() + "\n\n"
+                        + order.getFuelQuantity() + "L of " + order.getCar().getFuelType() +  "\n\n"
+                        + order.getPrice());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read value
+            }
+        });
+        mDatabase.child("deliverer_info").child(d_uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                textPerc.setText("Remaining Time");
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read value
+            }
+        });
+        mDatabase.child("orders").child(uid).child("status").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue(String.class).equals("canceled")){
-                    Toast.makeText(BookedActivity.this ,"Canceled by the user",Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserBookedActivity.this ,"Canceled by the deliverer",Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else if(dataSnapshot.getValue(String.class).equals("finished")){
+                    Toast.makeText(UserBookedActivity.this ,"Delivery completed",Toast.LENGTH_LONG).show();
                     finish();
                 }
             }
@@ -111,6 +133,7 @@ public class BookedActivity extends AppCompatActivity {
                 // Failed to read value
             }
         });
+
     }
 
     // Block the return button
@@ -131,18 +154,19 @@ public class BookedActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         FirebaseUser FireUser = firebaseAuth.getCurrentUser();
+        final String uid = FireUser.getUid().toString();
 
         final AlertDialog myDialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Are you sure you want to cancel this delivery ?");
         builder.setIcon(R.drawable.ic_cancel);
         builder.setCancelable(true);
-        builder.setMessage("Your client is waiting for you\nCanceling to much delivery will affect your visibility");
+        builder.setMessage("Your deliverer is coming for you\nCanceling to much delivery will affect your visibility");
         //Button to decide what to do next
         builder.setPositiveButton("Cancel anyway", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                mDatabase.child("orders").child(u_uid).child("status").setValue("canceled");
+                mDatabase.child("orders").child(uid).child("status").setValue("canceled");
                 finish();
             }
         });
@@ -156,46 +180,4 @@ public class BookedActivity extends AppCompatActivity {
         myDialog = builder.create();
         myDialog.show();
     }
-
-    public void onMap(View view){
-        String strUri = "http://maps.google.com/maps?q=loc:" + order.getLat() + "," + order.getLng() + " (" + order.getAddress() + ")";
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
-
-        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-
-        startActivity(intent);
-    }
-
-    public void onConfirm(View view){
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        FirebaseUser FireUser = firebaseAuth.getCurrentUser();
-
-        final AlertDialog myDialog;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Have you delivered the fuel ?");
-        builder.setIcon(R.drawable.ic_done);
-        builder.setCancelable(true);
-        builder.setMessage("Once your client have received his fuel\nAnd when you have been paid\nYou can confirm the delivery");
-        //Button to decide what to do next
-        builder.setPositiveButton("Confirm delivery", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                mDatabase.child("orders").child(u_uid).child("status").setValue("finished");
-                finish();
-            }
-        });
-        //Button to cancel
-        builder.setNegativeButton("Return", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //do nothing, cancel
-            }
-        });
-        myDialog = builder.create();
-        myDialog.show();
-    }
-
-
 }

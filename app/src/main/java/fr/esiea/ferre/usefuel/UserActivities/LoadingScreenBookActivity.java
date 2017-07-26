@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import fr.esiea.ferre.usefuel.DeliveryActivities.BookedActivity;
 import fr.esiea.ferre.usefuel.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -74,6 +75,9 @@ public class LoadingScreenBookActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 status = dataSnapshot.child("status").getValue(String.class);
 
+                final String d_uid;
+                d_uid = dataSnapshot.child("deliverer").getValue(String.class);
+
                 Log.d("firebase","data changed");
                 if (status == null)
                     return;
@@ -88,6 +92,9 @@ public class LoadingScreenBookActivity extends AppCompatActivity {
                     builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(getApplicationContext(),UserBookedActivity.class);
+                            intent.putExtra("value1",d_uid);
+                            startActivity(intent);
                             finish();
                         }
                     });

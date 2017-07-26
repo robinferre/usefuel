@@ -61,6 +61,8 @@
         <activity android:name=".DeliveryActivities.MainDeliveryActivity" />
         <activity android:name=".DeliveryActivities.BookedActivity" />
 
+        <activity android:name=".UserActivities.UserBookedActivity" />
+
         <activity android:name=".WBAD.WBAD"></activity>
     </application>
 
